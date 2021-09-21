@@ -3,13 +3,15 @@ extends KinematicBody2D
 
 var linear_vel = Vector2.ZERO
 var MAX_SPEED = 300
+var JUMP_SPEED = 300
+var DASH_SPEED = 800
 var ACCELERATION = 100
 
 var GRAVITY = 400
 
 var _facing_right = true
 var _airborne_time = 0
-var _MAX_AIRBORNE_TIME = 0.2
+var _MAX_AIRBORNE_TIME = 0.1
 
 onready var playback = $AnimationTree.get("parameters/playback")
 
@@ -28,13 +30,23 @@ func _physics_process(delta):
 		_airborne_time += delta
 		
 	if (on_floor or _airborne_time <= _MAX_AIRBORNE_TIME) and Input.is_action_just_pressed("jump"):
-		linear_vel.y = -MAX_SPEED
+		linear_vel.y = -JUMP_SPEED
 		_airborne_time = _MAX_AIRBORNE_TIME
+		
+	if (on_floor or _airborne_time <= _MAX_AIRBORNE_TIME) and Input.is_action_just_pressed("dash"):
+		if _facing_right:
+			linear_vel.x = DASH_SPEED
+		else:
+			linear_vel.x = -DASH_SPEED
+			
+		
 		
 	#animations
 	if on_floor:
 		if abs(linear_vel.x)> 10:
 			playback.travel("run")
+		elif Input.is_action_pressed("dash"):
+			playback.travel("dash")
 		else:
 			playback.travel("idle")
 	

@@ -15,3 +15,15 @@ position = Vector2( 375.706, 256.245 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
 position = Vector2( 444.806, 401.886 )
 shape = SubResource( 1 )
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2"]
+position = Vector2( 706.806, 286.886 )
+shape = SubResource( 1 )
+
+[node name="StaticBody2D3" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D3"]
+position = Vector2( 1214.81, 398.886 )
+shape = SubResource( 1 )
