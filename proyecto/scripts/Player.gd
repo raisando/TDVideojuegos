@@ -55,6 +55,8 @@ func _physics_process(delta):
 				playback.travel("run")
 			elif Input.is_action_pressed("dash"):
 				playback.travel("dash")
+			elif Input.is_action_just_pressed("attack"):
+				playback.travel("attackfull")
 			else:
 				playback.travel("idle")
 		
