@@ -17,7 +17,7 @@ onready var playback = $AnimationTree.get("parameters/playback")
 onready var playbackg = $AnimationTreeg.get("parameters/playback")
 
 func _physics_process(delta):
-	if Input.is_action_pressed("change_char"): #me cambia el estado del personaje
+	if Input.is_action_just_released("change_char"): #me cambia el estado del personaje
 		_ghost_state=not _ghost_state
 		
 	if _ghost_state==false:  #para modo humano
