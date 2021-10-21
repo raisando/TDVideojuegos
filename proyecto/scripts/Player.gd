@@ -14,6 +14,10 @@ var _MAX_AIRBORNE_TIME = 0.1
 var _ghost_state=false
 var jump_count=0
 
+var health=10
+var amount=100
+var max_health=100
+
 onready var playback = $AnimationTree.get("parameters/playback")
 onready var playbackg = $AnimationTreeg.get("parameters/playback")
 
@@ -38,7 +42,8 @@ func _physics_process(delta):
 		else:
 			_airborne_time += delta
 			
-		if (on_floor or _airborne_time <= _MAX_AIRBORNE_TIME) and Input.is_action_just_pressed("jump"):
+		if (on_floor or _airborne_time <= _MAX_AIRBORNE_TIME) and Input.is_action_just_pressed("jump"):			
+			jump_count+=1
 			linear_vel.y = -JUMP_SPEED
 			_airborne_time = _MAX_AIRBORNE_TIME
 			
@@ -52,6 +57,7 @@ func _physics_process(delta):
 			
 		#animations
 		if on_floor:
+			jump_count=0
 			if abs(linear_vel.x)> 10:
 				playback.travel("run")
 			elif Input.is_action_pressed("dash"):
