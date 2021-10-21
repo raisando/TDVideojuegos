@@ -12,6 +12,7 @@ var _facing_right = true
 var _airborne_time = 0
 var _MAX_AIRBORNE_TIME = 0.1
 var _ghost_state=false
+var jump_count=0
 
 onready var playback = $AnimationTree.get("parameters/playback")
 onready var playbackg = $AnimationTreeg.get("parameters/playback")
@@ -78,7 +79,7 @@ func _physics_process(delta):
 		$spriteg.visible=true
 		$Sprite.visible=false
 		
-		var jump_count=false
+		#var jump_count=false
 		
 		linear_vel = move_and_slide(linear_vel,Vector2.UP)
 		var on_floor = is_on_floor()
@@ -90,15 +91,15 @@ func _physics_process(delta):
 		
 		if on_floor:
 			_airborne_time = 0
-			jump_count=false
+			jump_count=0
 		else:
 			_airborne_time += delta
 			
-		if Input.is_action_just_pressed("jump") and !jump_count:
+		if Input.is_action_just_pressed("jump") and jump_count!=2:
 			linear_vel.y = -JUMP_SPEED
 			_airborne_time = _MAX_AIRBORNE_TIME
-			jump_count=true
-		if Input.is_action_just_pressed("jump") and jump_count:
+			jump_count+=1
+		else:
 			_airborne_time=0
 			
 			
