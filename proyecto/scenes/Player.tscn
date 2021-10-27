@@ -359,22 +359,22 @@ switch_mode = 2
 
 [sub_resource type="AnimationNodeStateMachine" id=36]
 states/attackfull/node = SubResource( 8 )
-states/attackfull/position = Vector2( 155, -183 )
+states/attackfull/position = Vector2( 155, -17 )
 states/dash/node = SubResource( 9 )
-states/dash/position = Vector2( 155, 195.436 )
+states/dash/position = Vector2( 155, 190.436 )
 states/fall/node = SubResource( 10 )
-states/fall/position = Vector2( 733.059, 195.436 )
+states/fall/position = Vector2( 683.059, 185.436 )
 states/idle/node = SubResource( 11 )
-states/idle/position = Vector2( 400, -315 )
+states/idle/position = Vector2( 423, -95 )
 states/jump/node = SubResource( 12 )
-states/jump/position = Vector2( 733.059, -199 )
+states/jump/position = Vector2( 683.059, -17 )
 states/jump_to_fall/node = SubResource( 13 )
-states/jump_to_fall/position = Vector2( 733.059, -33 )
+states/jump_to_fall/position = Vector2( 683.059, 83 )
 states/run/node = SubResource( 14 )
-states/run/position = Vector2( 400, 424 )
+states/run/position = Vector2( 432, 300 )
 transitions = [ "run", "idle", SubResource( 15 ), "idle", "run", SubResource( 16 ), "run", "attackfull", SubResource( 17 ), "idle", "attackfull", SubResource( 18 ), "run", "jump", SubResource( 19 ), "idle", "jump", SubResource( 20 ), "jump_to_fall", "fall", SubResource( 21 ), "jump", "jump_to_fall", SubResource( 22 ), "attackfull", "run", SubResource( 23 ), "attackfull", "idle", SubResource( 24 ), "fall", "idle", SubResource( 25 ), "fall", "run", SubResource( 26 ), "idle", "fall", SubResource( 27 ), "run", "fall", SubResource( 28 ), "run", "dash", SubResource( 29 ), "idle", "dash", SubResource( 30 ), "dash", "jump", SubResource( 31 ), "dash", "fall", SubResource( 32 ), "dash", "run", SubResource( 33 ), "dash", "idle", SubResource( 34 ), "dash", "attackfull", SubResource( 35 ) ]
 start_node = "idle"
-graph_offset = Vector2( -139.257, -525.75 )
+graph_offset = Vector2( -203.257, -181.75 )
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=37]
 
@@ -807,7 +807,7 @@ states/run/node = SubResource( 54 )
 states/run/position = Vector2( 400, 424 )
 transitions = [ "run", "idle", SubResource( 55 ), "idle", "run", SubResource( 56 ), "run", "attackfull", SubResource( 57 ), "idle", "attackfull", SubResource( 58 ), "run", "jump", SubResource( 59 ), "idle", "jump", SubResource( 60 ), "jump_to_fall", "fall", SubResource( 61 ), "jump", "jump_to_fall", SubResource( 62 ), "attackfull", "run", SubResource( 63 ), "attackfull", "idle", SubResource( 64 ), "fall", "idle", SubResource( 65 ), "fall", "run", SubResource( 66 ), "idle", "fall", SubResource( 67 ), "run", "fall", SubResource( 68 ), "run", "dash", SubResource( 69 ), "idle", "dash", SubResource( 70 ), "dash", "jump", SubResource( 71 ), "dash", "fall", SubResource( 72 ), "dash", "run", SubResource( 73 ), "dash", "idle", SubResource( 74 ), "dash", "attackfull", SubResource( 75 ), "jump", "double_jump", SubResource( 76 ), "double_jump", "jump_to_fall", SubResource( 77 ) ]
 start_node = "idle"
-graph_offset = Vector2( -219.5, -247.662 )
+graph_offset = Vector2( -219.5, -336.742 )
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=79]
 
@@ -820,7 +820,7 @@ scale = Vector2( 2, 2 )
 texture = ExtResource( 2 )
 hframes = 6
 vframes = 17
-frame = 5
+frame = 1
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/attackfull = SubResource( 1 )
