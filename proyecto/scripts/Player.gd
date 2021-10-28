@@ -28,6 +28,7 @@ func _physics_process(delta):
 	if _ghost_state==false:  #para modo humano
 		$spriteg.visible=false
 		$Sprite.visible=true
+		jump_count=2
 		
 		linear_vel = move_and_slide(linear_vel,Vector2.UP)
 		var on_floor = is_on_floor()
@@ -43,7 +44,6 @@ func _physics_process(delta):
 			_airborne_time += delta
 			
 		if (on_floor or _airborne_time <= _MAX_AIRBORNE_TIME) and Input.is_action_just_pressed("jump"):			
-			jump_count+=1
 			linear_vel.y = -JUMP_SPEED
 			_airborne_time = _MAX_AIRBORNE_TIME
 			
@@ -57,7 +57,6 @@ func _physics_process(delta):
 			
 		#animations
 		if on_floor:
-			jump_count=0
 			if abs(linear_vel.x)> 10:
 				playback.travel("run")
 			elif Input.is_action_pressed("dash"):
@@ -84,8 +83,6 @@ func _physics_process(delta):
 	else:  #para modo fantasma
 		$spriteg.visible=true
 		$Sprite.visible=false
-		
-		#var jump_count=false
 		
 		linear_vel = move_and_slide(linear_vel,Vector2.UP)
 		var on_floor = is_on_floor()
