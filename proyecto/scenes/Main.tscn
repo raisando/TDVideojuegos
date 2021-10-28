@@ -5,7 +5,7 @@
 [ext_resource path="res://Fondos/LavaTile set.png" type="Texture" id=3]
 [ext_resource path="res://Fondos/b.png" type="Texture" id=4]
 [ext_resource path="res://Fondos/a.png" type="Texture" id=5]
-[ext_resource path="res://scenes/HealthBar.gd" type="Script" id=6]
+[ext_resource path="res://scenes/Control.gd" type="Script" id=6]
 [ext_resource path="res://scenes/Enemigo(RigBod).tscn" type="PackedScene" id=7]
 [ext_resource path="res://scenes/Enemigo(Area2D).tscn" type="PackedScene" id=8]
 
@@ -259,36 +259,19 @@ __meta__ = {
 
 [node name="HUD" type="CanvasLayer" parent="."]
 
-[node name="Interfaz" type="Control" parent="HUD"]
-margin_left = -8.0
-margin_top = 11.0
-margin_right = 32.0
-margin_bottom = 51.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="HealthBar" type="Control" parent="HUD/Interfaz"]
-margin_left = -125.0
-margin_top = -33.0
-margin_right = -85.0
-margin_bottom = 7.0
+[node name="Control" type="Control" parent="HUD"]
+margin_right = 40.0
+margin_bottom = 40.0
 script = ExtResource( 6 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="TextureProgress" type="TextureProgress" parent="HUD/Interfaz/HealthBar"]
-margin_left = 179.0
-margin_top = 43.0
-margin_right = 379.0
-margin_bottom = 83.0
-value = 100.0
+[node name="HealthBar" type="TextureProgress" parent="HUD/Control"]
+margin_right = 40.0
+margin_bottom = 40.0
 texture_under = ExtResource( 5 )
 texture_progress = ExtResource( 4 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="RigidBody2D" parent="." instance=ExtResource( 7 )]
 position = Vector2( 476.308, 260 )

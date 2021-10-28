@@ -21,6 +21,7 @@ var max_health=100
 onready var playback = $AnimationTree.get("parameters/playback")
 onready var playbackg = $AnimationTreeg.get("parameters/playback")
 
+
 func _physics_process(delta):
 	if Input.is_action_just_released("change_char"): #me cambia el estado del personaje
 		_ghost_state=not _ghost_state
