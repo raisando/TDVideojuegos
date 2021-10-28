@@ -1,10 +1,10 @@
 extends Control
-
-
-onready var health_bar =$HealthBar
-var health=75
-
-func currenthealth(health, amount):
-	health_bar.value= 75
-func max_health(max_health):
-	health_bar.max_value = 75
+onready var health_bar = $HealthBar
+#var Health: = 100
+func _process(_delta):
+	if Input.is_action_just_pressed("left"):		
+		health_bar.value -= 5
+	if Input.is_action_just_pressed("right"):
+		health_bar.value += 5
+		
+	pass
