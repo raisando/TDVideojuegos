@@ -3,7 +3,8 @@ extends KinematicBody2D
 var linear_vel = Vector2.ZERO
 var MAX_SPEED = 300
 var JUMP_SPEED = 300
-var DASH_SPEED = 800
+var DASH_SPEED = 700
+var DASH_TIME = 0.3
 var ACCELERATION = 100
 
 var GRAVITY = 400
@@ -17,6 +18,11 @@ var jump_count=0
 var health=10
 var amount=100
 var max_health=100
+
+var _dashing_time = 0
+var _can_dash= false
+var _dashing = false
+
 
 onready var playback = $AnimationTree.get("parameters/playback")
 onready var playbackg = $AnimationTreeg.get("parameters/playback")
@@ -47,18 +53,28 @@ func _physics_process(delta):
 		if (on_floor or _airborne_time <= _MAX_AIRBORNE_TIME) and Input.is_action_just_pressed("jump"):			
 			linear_vel.y = -JUMP_SPEED
 			_airborne_time = _MAX_AIRBORNE_TIME
-			
-		if (on_floor or _airborne_time <= _MAX_AIRBORNE_TIME) and Input.is_action_just_pressed("dash"):
+
+		if (on_floor or _airborne_time <= _MAX_AIRBORNE_TIME and _can_dash) and Input.is_action_just_pressed("dash"):
+			_dashing = true
+			_can_dash  = false
+		if _dashing:
+			_dashing_time += delta
 			if _facing_right:
 				linear_vel.x = DASH_SPEED
 			else:
 				linear_vel.x = -DASH_SPEED
+			if _dashing_time >= DASH_TIME:
+				_dashing = false
+				_dashing_time = 0
+				
+				yield(get_tree().create_timer(4),"timeout")
+				_can_dash = true
 				
 			
 			
 		#animations
 		if on_floor:
-			if abs(linear_vel.x)> 10:
+			if abs(linear_vel.x)> 10 and not _dashing:
 				playback.travel("run")
 			elif Input.is_action_pressed("dash"):
 				playback.travel("dash")
@@ -107,16 +123,27 @@ func _physics_process(delta):
 			_airborne_time=0
 			
 			
-		if (on_floor or _airborne_time <= _MAX_AIRBORNE_TIME) and Input.is_action_just_pressed("dash"):
+		if (on_floor or _airborne_time <= _MAX_AIRBORNE_TIME and _can_dash) and Input.is_action_just_pressed("dash"):
+			_dashing = true
+			_can_dash  = false
+		if _dashing:
+			_dashing_time += delta
 			if _facing_right:
 				linear_vel.x = DASH_SPEED
 			else:
 				linear_vel.x = -DASH_SPEED
+			if _dashing_time >= DASH_TIME:
+				_dashing = false
+				_dashing_time = 0
+				
+				yield(get_tree().create_timer(4),"timeout")
+				_can_dash = true
+				
 				
 			
 		#animations
 		if on_floor:
-			if abs(linear_vel.x)> 10:
+			if abs(linear_vel.x)> 10 and not _dashing:
 				playbackg.travel("run")
 			elif Input.is_action_pressed("dash"):
 				playbackg.travel("dash")
@@ -136,5 +163,4 @@ func _physics_process(delta):
 		if  _facing_right and Input.is_action_pressed("left") and not Input.is_action_pressed("right"):
 			scale.x = -1
 			_facing_right = false	
-	
 	

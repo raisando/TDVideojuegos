@@ -821,7 +821,7 @@ scale = Vector2( 2, 2 )
 texture = ExtResource( 2 )
 hframes = 6
 vframes = 17
-frame = 3
+frame = 1
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/attackfull = SubResource( 1 )
@@ -831,6 +831,10 @@ anims/idle = SubResource( 4 )
 anims/jump = SubResource( 5 )
 anims/jump_to_fall = SubResource( 6 )
 anims/run = SubResource( 7 )
+
+[node name="Warrior_Sheet-Effect" type="Sprite" parent="AnimationPlayer"]
+position = Vector2( 454.412, -81.0037 )
+texture = ExtResource( 2 )
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
 tree_root = SubResource( 36 )
