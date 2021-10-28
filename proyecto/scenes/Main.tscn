@@ -299,7 +299,7 @@ texture_under = ExtResource( 5 )
 texture_progress = ExtResource( 4 )
 
 [node name="RigidBody2D" parent="." instance=ExtResource( 7 )]
-position = Vector2( 1286.31, 294.736 )
+position = Vector2( 1163.31, 294.736 )
 
 [node name="TileMap2" type="TileMap" parent="."]
 tile_set = SubResource( 25 )

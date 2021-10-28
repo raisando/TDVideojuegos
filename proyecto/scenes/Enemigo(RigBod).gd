@@ -1,8 +1,8 @@
-extends RigidBody2D
+extends KinematicBody2D
 
 var linear_vel = Vector2.ZERO
 var direccion_x = 1
-var MAX_SPEED = 300
+var MAX_SPEED = 150
 var JUMP_SPEED = 300
 var ACCELERATION = 100
 var GRAVITY = 400
@@ -34,7 +34,7 @@ func _physics_process(delta):
 	linear_vel.x = direccion_x * MAX_SPEED
 	linear_vel.y = delta * GRAVITY
 	
-	#linear_vel = move_and_slide(linear_vel, Vector2.UP)
+	linear_vel = move_and_slide(linear_vel, Vector2.UP)
 
 
 func _on_body_entered(body: Node):

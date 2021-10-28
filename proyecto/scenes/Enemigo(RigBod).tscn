@@ -9,10 +9,9 @@ height = 25.4645
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 136.369, 22.9536 )
 
-[node name="RigidBody2D" type="RigidBody2D"]
-collision_layer = 3
+[node name="KinematicBody2D" type="KinematicBody2D"]
+collision_layer = 2
 collision_mask = 3
-mode = 2
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_group_": true,
@@ -41,5 +40,6 @@ input_pickable = false
 shape = SubResource( 2 )
 
 [node name="RayCast2D" type="RayCast2D" parent="."]
-cast_to = Vector2( 20, 0 )
-collision_mask = 2
+enabled = true
+cast_to = Vector2( 12, 0 )
+collision_mask = 3

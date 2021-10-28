@@ -76,6 +76,8 @@ change_char={
 
 2d_physics/layer_1="Terreno"
 2d_physics/layer_2="Paredes invisibles"
+2d_physics/layer_3="Daño al jugador"
+2d_physics/layer_4="Daño a enemigos"
 
 [physics]
 
