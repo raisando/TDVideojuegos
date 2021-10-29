@@ -261,7 +261,7 @@ points = PoolVector2Array( 0, 0, 32, 0, 32, 32, 0, 32 )
 [node name="Main" type="Node2D"]
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
-position = Vector2( 1050.36, 294.736 )
+position = Vector2( 946.36, 389.736 )
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource( 23 )
@@ -303,7 +303,7 @@ __meta__ = {
 }
 
 [node name="Enemigo" parent="." instance=ExtResource( 7 )]
-position = Vector2( 1163.31, 294.736 )
+position = Vector2( 1080.31, 294.736 )
 
 [node name="TileMap2" type="TileMap" parent="."]
 tile_set = SubResource( 25 )

@@ -8,14 +8,16 @@ var ACCELERATION = 100
 var GRAVITY = 400
 
 var start_direction = Vector2(1,0)
-var damage = false
 
+#var seguiri = false
+var seguir = false
 var _facing_right = true
 
 # Declare member variables here. Examples:
 # var a: int = 2
 # var b: String = "text"
 onready var AreaVision = get_node("Area2D")
+#onready var AreaVisionDer = get_node("Area2DIzq")
 onready var recon_pared = $RayCast2D
 
 # Called when the node enters the scene tree for the first time.
@@ -23,13 +25,15 @@ func _ready():
 	direccion_x = start_direction.x
 	recon_pared.cast_to.x *= direccion_x
 	AreaVision.connect("body_entered", self, "_on_body_entered")
+	AreaVision.connect("body_exited", self, "_on_body_exited")
 	
 func _physics_process(delta):
 	
-	if recon_pared.is_colliding():
+	if recon_pared.is_colliding() and not seguir:
 		direccion_x *= -1
 		recon_pared.cast_to.x *= -1
-		
+	
+	
 	linear_vel.x = direccion_x * MAX_SPEED
 	linear_vel.y = delta * GRAVITY
 	
@@ -37,10 +41,15 @@ func _physics_process(delta):
 
 
 func _on_body_entered(body: Node):
+	seguir = true
 	print(body.name)
-	damage=true
 	pass # Replace with function body.
 
+func _on_body_exited(body: Node):
+	seguir = false
+	print("kieee")
+	
+	pass # Replace with function body.
 
 
 

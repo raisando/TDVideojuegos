@@ -154,7 +154,7 @@ func _physics_process(delta):
 			else:
 				playbackg.travel("idle")
 		
-		else:								
+		else:
 			if linear_vel.y >0:
 				playbackg.travel("fall")
 			else:
