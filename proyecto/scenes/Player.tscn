@@ -375,7 +375,7 @@ states/run/node = SubResource( 14 )
 states/run/position = Vector2( 432, 300 )
 transitions = [ "run", "idle", SubResource( 15 ), "idle", "run", SubResource( 16 ), "run", "attackfull", SubResource( 17 ), "idle", "attackfull", SubResource( 18 ), "run", "jump", SubResource( 19 ), "idle", "jump", SubResource( 20 ), "jump_to_fall", "fall", SubResource( 21 ), "jump", "jump_to_fall", SubResource( 22 ), "attackfull", "run", SubResource( 23 ), "attackfull", "idle", SubResource( 24 ), "fall", "idle", SubResource( 25 ), "fall", "run", SubResource( 26 ), "idle", "fall", SubResource( 27 ), "run", "fall", SubResource( 28 ), "run", "dash", SubResource( 29 ), "idle", "dash", SubResource( 30 ), "dash", "jump", SubResource( 31 ), "dash", "fall", SubResource( 32 ), "dash", "run", SubResource( 33 ), "dash", "idle", SubResource( 34 ), "dash", "attackfull", SubResource( 35 ) ]
 start_node = "idle"
-graph_offset = Vector2( -203.257, -181.75 )
+graph_offset = Vector2( -203.257, -228.118 )
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=37]
 
@@ -822,7 +822,7 @@ scale = Vector2( 2, 2 )
 texture = ExtResource( 2 )
 hframes = 6
 vframes = 17
-frame = 5
+frame = 4
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/attackfull = SubResource( 1 )
@@ -834,7 +834,7 @@ anims/jump_to_fall = SubResource( 6 )
 anims/run = SubResource( 7 )
 
 [node name="Warrior_Sheet-Effect" type="Sprite" parent="AnimationPlayer"]
-position = Vector2( 454.412, -81.0037 )
+position = Vector2( 368.412, -387.004 )
 texture = ExtResource( 2 )
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
@@ -876,7 +876,6 @@ active = true
 parameters/playback = SubResource( 79 )
 
 [node name="Invulnerable" type="Timer" parent="."]
-wait_time = 0.6
 
 [node name="Area2D" type="Area2D" parent="."]
 script = ExtResource( 4 )
