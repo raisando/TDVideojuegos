@@ -1,5 +1,8 @@
 extends KinematicBody2D
 
+signal health_change(health)
+signal killed()
+
 var linear_vel = Vector2.ZERO
 var MAX_SPEED = 300
 var JUMP_SPEED = 300
@@ -15,9 +18,8 @@ var _MAX_AIRBORNE_TIME = 0.1
 var _ghost_state=false
 var jump_count=0
 
-var health=10
-var amount=100
-var max_health=100
+
+
 
 var _dashing_time = 0
 var _can_dash= false
@@ -36,6 +38,8 @@ func _physics_process(delta):
 		$spriteg.visible=false
 		$Sprite.visible=true
 		jump_count=2
+		
+			
 		
 		linear_vel = move_and_slide(linear_vel,Vector2.UP)
 		var on_floor = is_on_floor()
@@ -163,4 +167,5 @@ func _physics_process(delta):
 		if  _facing_right and Input.is_action_pressed("left") and not Input.is_action_pressed("right"):
 			scale.x = -1
 			_facing_right = false	
-	
+			
+

@@ -1,14 +1,9 @@
 extends Area2D
+onready var health = get_node("../../HUD/Control/HealthBar")
 
-var linear_vel = Vector2.ZERO
-var MAX_SPEED = 300
-var JUMP_SPEED = 300
-var DASH_SPEED = 800
-var ACCELERATION = 100
-
-var GRAVITY = 400
-
-var _facing_right = true
-var _airborne_time = 0
-var _MAX_AIRBORNE_TIME = 0.1
-
+func _ready():
+	connect("body_entered", self, "on_body_entered")
+	
+func on_body_entered(body):
+	health.value-=5
+	print (health)

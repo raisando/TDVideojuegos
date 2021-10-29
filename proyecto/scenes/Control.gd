@@ -1,10 +1,8 @@
 extends Control
 onready var health_bar = $HealthBar
-#var Health: = 100
+onready var Health = get_node("../../Player/Area2D").health
 func _process(_delta):
-	if Input.is_action_just_pressed("left"):		
-		health_bar.value -= 5
-	if Input.is_action_just_pressed("right"):
-		health_bar.value += 5
-		
-	pass
+	if health_bar.value != Health.value:
+		health_bar=Health.value
+		print (Health)
+#

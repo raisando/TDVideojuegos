@@ -8,8 +8,7 @@ var ACCELERATION = 100
 var GRAVITY = 400
 
 var start_direction = Vector2(1,0)
-
-
+var damage = false
 
 var _facing_right = true
 
@@ -39,6 +38,7 @@ func _physics_process(delta):
 
 func _on_body_entered(body: Node):
 	print(body.name)
+	damage=true
 	pass # Replace with function body.
 
 

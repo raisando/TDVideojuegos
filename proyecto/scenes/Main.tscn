@@ -295,10 +295,14 @@ __meta__ = {
 [node name="HealthBar" type="TextureProgress" parent="HUD/Control"]
 margin_right = 40.0
 margin_bottom = 40.0
+value = 100.0
 texture_under = ExtResource( 5 )
 texture_progress = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-[node name="RigidBody2D" parent="." instance=ExtResource( 7 )]
+[node name="Enemigo" parent="." instance=ExtResource( 7 )]
 position = Vector2( 1163.31, 294.736 )
 
 [node name="TileMap2" type="TileMap" parent="."]

@@ -1,8 +1,9 @@
-[gd_scene load_steps=83 format=2]
+[gd_scene load_steps=84 format=2]
 
 [ext_resource path="res://scripts/Player.gd" type="Script" id=1]
 [ext_resource path="res://sprites/Warrior/SpriteSheet/Warrior_Sheet-Effect.png" type="Texture" id=2]
 [ext_resource path="res://icon.png" type="Texture" id=3]
+[ext_resource path="res://scenes/Area2D.gd" type="Script" id=4]
 
 [sub_resource type="Animation" id=1]
 resource_name = "attackfull"
@@ -821,7 +822,7 @@ scale = Vector2( 2, 2 )
 texture = ExtResource( 2 )
 hframes = 6
 vframes = 17
-frame = 1
+frame = 5
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/attackfull = SubResource( 1 )
@@ -843,6 +844,7 @@ active = true
 parameters/playback = SubResource( 37 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 shape = SubResource( 38 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
@@ -872,3 +874,13 @@ tree_root = SubResource( 78 )
 anim_player = NodePath("../AnimationPlayerg")
 active = true
 parameters/playback = SubResource( 79 )
+
+[node name="Invulnerable" type="Timer" parent="."]
+wait_time = 0.6
+
+[node name="Area2D" type="Area2D" parent="."]
+script = ExtResource( 4 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+visible = false
+shape = SubResource( 38 )
