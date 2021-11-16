@@ -49,14 +49,22 @@ func _physics_process(delta):
 		var target_vel = Input.get_action_strength("right") - Input.get_action_strength("left")
 		linear_vel.x = move_toward(linear_vel.x,target_vel * MAX_SPEED,ACCELERATION) 
 		
-		if on_floor:
+		if on_floor or nextToWall():
 			_airborne_time = 0
 		else:
 			_airborne_time += delta
 			
-		if (on_floor or _airborne_time <= _MAX_AIRBORNE_TIME) and Input.is_action_just_pressed("jump"):			
-			linear_vel.y = -JUMP_SPEED
-			_airborne_time = _MAX_AIRBORNE_TIME
+		if (on_floor or _airborne_time <= _MAX_AIRBORNE_TIME or nextToWall()) and Input.is_action_just_pressed("jump"):
+			if nextToWall():
+				if nextToRightWall():
+					linear_vel.x -= 1000
+					linear_vel.y -= JUMP_SPEED
+				if nextToLeftWall():
+					linear_vel.x += 1000
+					linear_vel.y -= JUMP_SPEED
+			else:		
+				linear_vel.y = -JUMP_SPEED
+				_airborne_time = _MAX_AIRBORNE_TIME
 
 		if (on_floor or _airborne_time <= _MAX_AIRBORNE_TIME and _can_dash) and Input.is_action_just_pressed("dash"):
 			_dashing = true
@@ -169,3 +177,11 @@ func _physics_process(delta):
 			_facing_right = false	
 			
 
+func nextToWall():
+	return nextToRightWall() or nextToLeftWall()
+
+func nextToRightWall():
+	return $RightWall.is_colliding()
+	
+func nextToLeftWall():
+	return $LeftWall.is_colliding()
