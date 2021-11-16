@@ -1,9 +1,96 @@
-[gd_scene load_steps=84 format=2]
+[gd_scene load_steps=93 format=2]
 
 [ext_resource path="res://scripts/Player.gd" type="Script" id=1]
 [ext_resource path="res://sprites/Warrior/SpriteSheet/Warrior_Sheet-Effect.png" type="Texture" id=2]
 [ext_resource path="res://icon.png" type="Texture" id=3]
 [ext_resource path="res://scenes/Area2D.gd" type="Script" id=4]
+
+[sub_resource type="Animation" id=80]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("AnimationPlayer/Warrior_Sheet-Effect:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ ExtResource( 2 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("AnimationPlayer/Warrior_Sheet-Effect:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 6 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("AnimationPlayer/Warrior_Sheet-Effect:vframes")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 17 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("AnimationPlayer/Warrior_Sheet-Effect:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 60 ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Sprite:texture")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ ExtResource( 2 ) ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("Sprite:hframes")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 6 ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("Sprite:frame")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 3 ]
+}
 
 [sub_resource type="Animation" id=1]
 resource_name = "attackfull"
@@ -287,6 +374,47 @@ tracks/2/keys = {
 "values": [ 6, 7, 8, 9, 10, 11, 12, 13 ]
 }
 
+[sub_resource type="Animation" id=81]
+resource_name = "wallSlide"
+length = 0.3
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0.3 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 2 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 6 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Sprite:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ 60, 61, 62 ]
+}
+
 [sub_resource type="AnimationNodeAnimation" id=8]
 animation = "attackfull"
 
@@ -307,6 +435,9 @@ animation = "jump_to_fall"
 
 [sub_resource type="AnimationNodeAnimation" id=14]
 animation = "run"
+
+[sub_resource type="AnimationNodeAnimation" id=82]
+animation = "wallSlide"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=15]
 
@@ -358,6 +489,18 @@ switch_mode = 2
 [sub_resource type="AnimationNodeStateMachineTransition" id=35]
 switch_mode = 2
 
+[sub_resource type="AnimationNodeStateMachineTransition" id=83]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=84]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=85]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=86]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=87]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=88]
+
 [sub_resource type="AnimationNodeStateMachine" id=36]
 states/attackfull/node = SubResource( 8 )
 states/attackfull/position = Vector2( 155, -17 )
@@ -370,10 +513,12 @@ states/idle/position = Vector2( 423, -95 )
 states/jump/node = SubResource( 12 )
 states/jump/position = Vector2( 683.059, -17 )
 states/jump_to_fall/node = SubResource( 13 )
-states/jump_to_fall/position = Vector2( 683.059, 83 )
+states/jump_to_fall/position = Vector2( 711.726, 73.8102 )
 states/run/node = SubResource( 14 )
 states/run/position = Vector2( 432, 300 )
-transitions = [ "run", "idle", SubResource( 15 ), "idle", "run", SubResource( 16 ), "run", "attackfull", SubResource( 17 ), "idle", "attackfull", SubResource( 18 ), "run", "jump", SubResource( 19 ), "idle", "jump", SubResource( 20 ), "jump_to_fall", "fall", SubResource( 21 ), "jump", "jump_to_fall", SubResource( 22 ), "attackfull", "run", SubResource( 23 ), "attackfull", "idle", SubResource( 24 ), "fall", "idle", SubResource( 25 ), "fall", "run", SubResource( 26 ), "idle", "fall", SubResource( 27 ), "run", "fall", SubResource( 28 ), "run", "dash", SubResource( 29 ), "idle", "dash", SubResource( 30 ), "dash", "jump", SubResource( 31 ), "dash", "fall", SubResource( 32 ), "dash", "run", SubResource( 33 ), "dash", "idle", SubResource( 34 ), "dash", "attackfull", SubResource( 35 ) ]
+states/wallSlide/node = SubResource( 82 )
+states/wallSlide/position = Vector2( 961.743, 73.5487 )
+transitions = [ "run", "idle", SubResource( 15 ), "idle", "run", SubResource( 16 ), "run", "attackfull", SubResource( 17 ), "idle", "attackfull", SubResource( 18 ), "run", "jump", SubResource( 19 ), "idle", "jump", SubResource( 20 ), "jump_to_fall", "fall", SubResource( 21 ), "jump", "jump_to_fall", SubResource( 22 ), "attackfull", "run", SubResource( 23 ), "attackfull", "idle", SubResource( 24 ), "fall", "idle", SubResource( 25 ), "fall", "run", SubResource( 26 ), "idle", "fall", SubResource( 27 ), "run", "fall", SubResource( 28 ), "run", "dash", SubResource( 29 ), "idle", "dash", SubResource( 30 ), "dash", "jump", SubResource( 31 ), "dash", "fall", SubResource( 32 ), "dash", "run", SubResource( 33 ), "dash", "idle", SubResource( 34 ), "dash", "attackfull", SubResource( 35 ), "jump_to_fall", "wallSlide", SubResource( 83 ), "fall", "wallSlide", SubResource( 84 ), "wallSlide", "jump_to_fall", SubResource( 85 ), "wallSlide", "fall", SubResource( 86 ), "wallSlide", "jump", SubResource( 87 ), "jump", "wallSlide", SubResource( 88 ) ]
 start_node = "idle"
 graph_offset = Vector2( -203.257, -228.118 )
 
@@ -822,9 +967,10 @@ scale = Vector2( 2, 2 )
 texture = ExtResource( 2 )
 hframes = 6
 vframes = 17
-frame = 1
+frame = 3
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/RESET = SubResource( 80 )
 anims/attackfull = SubResource( 1 )
 anims/dash = SubResource( 2 )
 anims/fall = SubResource( 3 )
@@ -832,10 +978,15 @@ anims/idle = SubResource( 4 )
 anims/jump = SubResource( 5 )
 anims/jump_to_fall = SubResource( 6 )
 anims/run = SubResource( 7 )
+anims/wallSlide = SubResource( 81 )
 
 [node name="Warrior_Sheet-Effect" type="Sprite" parent="AnimationPlayer"]
-position = Vector2( 368.412, -387.004 )
+visible = false
+position = Vector2( 367.412, -387.004 )
 texture = ExtResource( 2 )
+hframes = 6
+vframes = 17
+frame = 60
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
 tree_root = SubResource( 36 )
@@ -887,9 +1038,10 @@ shape = SubResource( 38 )
 [node name="RightWall" type="RayCast2D" parent="."]
 rotation = -1.5708
 enabled = true
-cast_to = Vector2( 0, 30 )
+cast_to = Vector2( 0, 20 )
 
 [node name="LeftWall" type="RayCast2D" parent="."]
+position = Vector2( -0.840897, 0 )
 rotation = 1.5708
 enabled = true
-cast_to = Vector2( 0, 30 )
+cast_to = Vector2( 0, 20 )
