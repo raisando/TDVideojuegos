@@ -5,12 +5,12 @@ signal killed()
 
 var linear_vel = Vector2.ZERO
 var MAX_SPEED = 300
-var JUMP_SPEED = 300
-var DASH_SPEED = 700
-var DASH_TIME = 0.3
+var JUMP_SPEED = 400
+var DASH_SPEED = 600
+var DASH_TIME = 0.15
 var ACCELERATION = 100
 
-var GRAVITY = 400
+var GRAVITY = 850
 
 var _facing_right = true
 var _airborne_time = 0
@@ -132,7 +132,7 @@ func _physics_process(delta):
 			_airborne_time += delta
 			
 		if Input.is_action_just_pressed("jump") and jump_count!=2:
-			linear_vel.y = -JUMP_SPEED
+			linear_vel.y = -JUMP_SPEED+GRAVITY*delta
 			_airborne_time = _MAX_AIRBORNE_TIME
 			jump_count+=1
 		else:
