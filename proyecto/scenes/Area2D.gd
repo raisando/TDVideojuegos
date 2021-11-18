@@ -6,11 +6,14 @@ func _ready():
 	connect("body_entered", self, "on_body_entered")
 	#connect("timeout",self,"_on_timer_timeout")
 	
-func on_body_entered(body):
-	health.value-=5
-	print (health.value)
+#func on_body_entered(body):
+#	health.value-=5
+#	print (health.value)
 
-#func _on_timer_timeout():
+func on_body_entered(body):
+	get_tree().reload_current_scene()
+	print("kiee")
+	#func _on_timer_timeout():
 #	if originalhealth.value!=health.value and invulnerable.is_stopped():
 #		originalhealth.value=health.value
 #		invulnerable.start()

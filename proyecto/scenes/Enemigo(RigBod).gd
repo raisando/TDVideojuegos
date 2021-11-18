@@ -61,7 +61,7 @@ func _on_body_entered(body: Node):
 func _on_body_exited(body: Node):
 	#contador para esperar unos segundos antes de volver a deambular
 	seguir = false
-	print(body.name + "sale")
+	print(body.name + " sale")
 	
 	pass # Replace with function body.
 
