@@ -12,6 +12,7 @@ func _ready():
 
 func on_body_entered(body:Node):############################
 #	get_tree().reload_current_scene()##################
+	health.value-=5
 	print("kiee")#############################
 	#func _on_timer_timeout():
 #	if originalhealth.value!=health.value and invulnerable.is_stopped():
