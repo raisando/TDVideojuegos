@@ -7,7 +7,7 @@ var JUMP_SPEED = 300
 var ACCELERATION = 100
 var GRAVITY = 400
 
-var start_direction = Vector2(1,0)
+export var start_direction = Vector2(1,0)
 
 #var seguiri = false
 var seguir = false
@@ -19,11 +19,14 @@ var _facing_right = true
 onready var AreaVision = get_node("Area2D")
 #onready var AreaVisionDer = get_node("Area2DIzq")
 onready var recon_pared = $RayCast2D
-onready var Player = get_parent().get_node("Player")
+onready var Player
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	var Players = get_tree().get_nodes_in_group("Player")
+	if Players.size() > 0:
+		Player = Players[0]
 	#seguir = false
 	direccion_x = start_direction.x
 	recon_pared.cast_to.x *= direccion_x
@@ -31,8 +34,7 @@ func _ready():
 	AreaVision.connect("body_exited", self, "_on_body_exited")
 	
 func _physics_process(delta):
-	var dir_seguir = (Player.global_position - global_position).normalized()
-	dir_seguir.y = 0
+	var dir_seguir = Vector2(Player.global_position.x - global_position.x,0).normalized()
 	#seguir = false
 	
 	if not seguir:
@@ -54,16 +56,18 @@ func _physics_process(delta):
 
 
 func _on_body_entered(body: Node):
-	seguir = true
-	print(body.name + " entra")
-	pass # Replace with function body.
+	if body.is_in_group("Player"):
+		seguir = true
+		print(body.name + " entra")
+	
 
 func _on_body_exited(body: Node):
 	#contador para esperar unos segundos antes de volver a deambular
-	seguir = false
-	print(body.name + " sale")
 	
-	pass # Replace with function body.
+	if body.is_in_group("Player"):
+		seguir = false
+		print(body.name + " sale")
+	
 
 
 
