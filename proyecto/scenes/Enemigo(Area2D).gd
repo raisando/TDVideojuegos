@@ -1,5 +1,7 @@
 extends Area2D
 
+export var melee = true
+export var fantasma = false
 
 # Declare member variables here. Examples:
 # var a: int = 2
