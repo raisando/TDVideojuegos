@@ -11,7 +11,9 @@ config_version=4
 [application]
 
 config/name="game"
-run/main_scene="res://scenes/menu.tscn"
+
+run/main_scene="res://scenes/Lobby.tscn"
+
 config/icon="res://icon.png"
 
 [importer_defaults]
@@ -39,6 +41,11 @@ texture={
 
 [input]
 
+Entrar={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":87,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
+ ]
+}
 left={
 "deadzone": 0.5,
 "events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":65,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
@@ -83,6 +90,7 @@ prueba={
 2d_physics/layer_2="Paredes invisibles"
 2d_physics/layer_3="Daño al jugador"
 2d_physics/layer_4="Daño a enemigos"
+2d_physics/layer_6="Portales"
 
 [physics]
 

@@ -1,6 +1,6 @@
 extends KinematicBody2D
 
-signal health_change(health)
+signal health_change(Vida)
 signal killed()
 
 var linear_vel = Vector2.ZERO
@@ -19,16 +19,19 @@ var _ghost_state=false
 var jump_count=0
 
 
-
+var Vida = 100
 
 var _dashing_time = 0
 var _can_dash= false
 var _dashing = false
 
+var player_en_portal = false
+var portal_seleccionado
 
+onready var Player = get_parent().get_node("Player")
 onready var playback = $AnimationTree.get("parameters/playback")
 onready var playbackg = $AnimationTreeg.get("parameters/playback")
-
+onready var Entrada = $Entrada
 
 func _physics_process(delta):
 	if Input.is_action_just_released("change_char"): #me cambia el estado del personaje
@@ -180,6 +183,29 @@ func _physics_process(delta):
 			scale.x = -1
 			_facing_right = false	
 			
+	#TELEPORT
+
+	if Entrada.is_colliding():
+		player_en_portal = true
+		portal_seleccionado = Entrada.get_collider()
+	else:
+		player_en_portal = false
+		portal_seleccionado = Entrada.get_collider()
+		
+	if Input.is_action_just_pressed("Entrar") and player_en_portal:
+		portal_seleccionado.activar(self)
+		#get_tree().call_group("Player", "teleport_to", get_node(teleport_target).position)
+
+
+#func teleport_to(target_pos):
+#	position = target_pos
+
+#export (NodePath) var teleport_target = get_parent().get_node("Portal1").position
+
+
+func vida_modificada():
+	emit_signal("health_change", Vida)
+
 
 func nextToWall():
 	return nextToRightWall() or nextToLeftWall()
@@ -189,3 +215,5 @@ func nextToRightWall():
 	
 func nextToLeftWall():
 	return $LeftWall.is_colliding()
+
+

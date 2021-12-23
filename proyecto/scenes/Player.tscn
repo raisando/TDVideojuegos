@@ -957,7 +957,7 @@ graph_offset = Vector2( -219.5, -336.742 )
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=79]
 
-[node name="Player" type="KinematicBody2D"]
+[node name="Player" type="KinematicBody2D" groups=["Player"]]
 collision_layer = 0
 collision_mask = 17
 script = ExtResource( 1 )
@@ -968,7 +968,7 @@ scale = Vector2( 2, 2 )
 texture = ExtResource( 2 )
 hframes = 6
 vframes = 17
-frame = 3
+frame = 5
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/RESET = SubResource( 80 )
@@ -1046,3 +1046,10 @@ position = Vector2( -0.840897, 0 )
 rotation = 1.5708
 enabled = true
 cast_to = Vector2( 0, 20 )
+
+[node name="Entrada" type="RayCast2D" parent="."]
+enabled = true
+cast_to = Vector2( 0, -5 )
+collision_mask = 32
+collide_with_areas = true
+collide_with_bodies = false
