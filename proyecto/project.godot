@@ -11,7 +11,9 @@ config_version=4
 [application]
 
 config/name="game"
+
 run/main_scene="res://scenes/Lobby.tscn"
+
 config/icon="res://icon.png"
 
 [importer_defaults]
