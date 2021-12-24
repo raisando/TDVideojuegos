@@ -12,10 +12,10 @@ func _ready():
 
 
 func on_play_pressed():
-	get_tree().change_scene("res://scenes/Lobby.tscn")
+	LevelManager.change_scene(2) # Lobby
 
 func on_credits_pressed():
-	get_tree().change_scene("res://scenes/creditos.tscn")
+	LevelManager.change_scene(1) # Créditos
 	
 func on_quit_pressed():
 	get_tree().quit()

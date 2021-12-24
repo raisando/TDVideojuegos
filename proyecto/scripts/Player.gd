@@ -1,7 +1,7 @@
 extends KinematicBody2D
 
-signal health_change(Vida)
-signal killed()
+export var movil = true
+### signal killed() colocar señal en PropPlayer
 
 var linear_vel = Vector2.ZERO
 var MAX_SPEED = 300
@@ -19,7 +19,8 @@ var _ghost_state=false
 var jump_count=0
 
 
-var Vida = 100
+# Vida = PropPlayer.Vida 
+# Usar PropPlayer.Vida en vez de asignar a una variable
 
 var _dashing_time = 0
 var _can_dash= false
@@ -33,7 +34,18 @@ onready var playback = $AnimationTree.get("parameters/playback")
 onready var playbackg = $AnimationTreeg.get("parameters/playback")
 onready var Entrada = $Entrada
 
+func _ready() -> void:
+	var _er = PropPlayer.connect("killed", self, "on_killed")
+
 func _physics_process(delta):
+	
+	if movil == false:
+		linear_vel.x = 0
+		linear_vel.y += GRAVITY * delta
+		linear_vel = move_and_slide(linear_vel,Vector2.UP)
+		return
+	
+	
 	if Input.is_action_just_released("change_char"): #me cambia el estado del personaje
 		_ghost_state=not _ghost_state
 		
@@ -203,10 +215,6 @@ func _physics_process(delta):
 #export (NodePath) var teleport_target = get_parent().get_node("Portal1").position
 
 
-func vida_modificada():
-	emit_signal("health_change", Vida)
-
-
 func nextToWall():
 	return nextToRightWall() or nextToLeftWall()
 
@@ -215,5 +223,16 @@ func nextToRightWall():
 	
 func nextToLeftWall():
 	return $LeftWall.is_colliding()
+
+#func on_killed():
+	
+
+
+# dejar al final
+func _unhandled_key_input(event: InputEventKey) -> void:
+	if event.pressed and event.scancode == KEY_0:
+		PropPlayer.Vida -= 10
+	if event.pressed and event.scancode == KEY_R:
+		LevelManager.reload_scene()
 
 

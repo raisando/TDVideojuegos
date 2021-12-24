@@ -1,7 +1,7 @@
 extends Area2D
 
 export var Cambia_escena = true
-export (PackedScene) var escena_destino
+export var escena_destino: int
 
 # Declare member variables here. Examples:
 # var a: int = 2
@@ -12,7 +12,7 @@ onready var Posicion_salida = $Position2D
 
 func activar(Player):
 	if Cambia_escena:
-		get_tree().change_scene_to(escena_destino)
+		LevelManager.change_scene(escena_destino)
 	else:
 		Player.global_position = Posicion_salida.global_position
 
