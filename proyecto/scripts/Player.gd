@@ -234,5 +234,7 @@ func _unhandled_key_input(event: InputEventKey) -> void:
 		PropPlayer.Vida -= 10
 	if event.pressed and event.scancode == KEY_R:
 		LevelManager.reload_scene()
+		
+
 
 
