@@ -29,18 +29,25 @@ var _dashing = false
 var player_en_portal = false
 var portal_seleccionado
 
+
+
 var bullet = preload("res://scenes/bullet.tscn")
+var bullettimer=0
+
 
 onready var Player = get_parent().get_node("Player")
 onready var playback = $AnimationTree.get("parameters/playback")
 onready var playbackg = $AnimationTreeg.get("parameters/playback")
 onready var Entrada = $Entrada
+onready var ataque_melee = $ataquemelee
+
 var _can_shoot=true
 
 func _ready() -> void:
 	var _er = PropPlayer.connect("killed", self, "on_killed")
+	ataque_melee.connect("body_entered", self, "on_ataquemelee_body_entered")
+	
 
-var bullettimer=0
 func _process(delta):
 	bullettimer+=delta
 	if bullettimer>1:
@@ -257,8 +264,6 @@ func _fire():
 			Bullet.rotation= PI
 		bullettimer=0
 		
-		
-		
-
-
-
+func on_ataquemelee_body_entered(body: Node):
+	if body.is_in_group("enemigo") and has_method("quitar_vida"):
+		body.quitar_vida(20)
