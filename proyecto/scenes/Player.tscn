@@ -619,12 +619,12 @@ switch_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=91]
 
-<<<<<<< HEAD
-=======
+[sub_resource type="AnimationNodeStateMachineTransition" id=95]
+
 [sub_resource type="AnimationNodeStateMachineTransition" id=92]
 switch_mode = 2
 
->>>>>>> 940eb93847be537a831cba8c9f5f424b598356b2
+
 [sub_resource type="AnimationNodeStateMachine" id=36]
 states/attackfull/node = SubResource( 8 )
 states/attackfull/position = Vector2( 155, -17 )
@@ -644,11 +644,11 @@ states/run/node = SubResource( 14 )
 states/run/position = Vector2( 432, 300 )
 states/wallSlide/node = SubResource( 82 )
 states/wallSlide/position = Vector2( 961.743, 73.5487 )
-<<<<<<< HEAD
-transitions = [ "run", "idle", SubResource( 15 ), "idle", "run", SubResource( 16 ), "run", "attackfull", SubResource( 17 ), "idle", "attackfull", SubResource( 18 ), "run", "jump", SubResource( 19 ), "idle", "jump", SubResource( 20 ), "jump_to_fall", "fall", SubResource( 21 ), "jump", "jump_to_fall", SubResource( 22 ), "attackfull", "run", SubResource( 23 ), "attackfull", "idle", SubResource( 24 ), "fall", "idle", SubResource( 25 ), "fall", "run", SubResource( 26 ), "idle", "fall", SubResource( 27 ), "run", "fall", SubResource( 28 ), "run", "dash", SubResource( 29 ), "idle", "dash", SubResource( 30 ), "dash", "jump", SubResource( 31 ), "dash", "fall", SubResource( 32 ), "dash", "run", SubResource( 33 ), "dash", "idle", SubResource( 34 ), "dash", "attackfull", SubResource( 35 ), "jump_to_fall", "wallSlide", SubResource( 83 ), "fall", "wallSlide", SubResource( 84 ), "wallSlide", "jump_to_fall", SubResource( 85 ), "wallSlide", "fall", SubResource( 86 ), "wallSlide", "jump", SubResource( 87 ), "jump", "wallSlide", SubResource( 88 ), "attackfull", "dash", SubResource( 91 ) ]
-=======
-transitions = [ "run", "idle", SubResource( 15 ), "idle", "run", SubResource( 16 ), "run", "attackfull", SubResource( 17 ), "idle", "attackfull", SubResource( 18 ), "run", "jump", SubResource( 19 ), "idle", "jump", SubResource( 20 ), "jump_to_fall", "fall", SubResource( 21 ), "jump", "jump_to_fall", SubResource( 22 ), "attackfull", "run", SubResource( 23 ), "attackfull", "idle", SubResource( 24 ), "fall", "idle", SubResource( 25 ), "fall", "run", SubResource( 26 ), "idle", "fall", SubResource( 27 ), "run", "fall", SubResource( 28 ), "run", "dash", SubResource( 29 ), "idle", "dash", SubResource( 30 ), "dash", "jump", SubResource( 31 ), "dash", "fall", SubResource( 32 ), "dash", "run", SubResource( 33 ), "dash", "idle", SubResource( 34 ), "dash", "attackfull", SubResource( 35 ), "jump_to_fall", "wallSlide", SubResource( 83 ), "fall", "wallSlide", SubResource( 84 ), "wallSlide", "jump_to_fall", SubResource( 85 ), "wallSlide", "fall", SubResource( 86 ), "wallSlide", "jump", SubResource( 87 ), "jump", "wallSlide", SubResource( 88 ), "idle", "damage", SubResource( 91 ), "damage", "idle", SubResource( 92 ) ]
->>>>>>> 940eb93847be537a831cba8c9f5f424b598356b2
+
+
+
+transitions = [ "run", "idle", SubResource( 15 ), "idle", "run", SubResource( 16 ), "run", "attackfull", SubResource( 17 ), "idle", "attackfull", SubResource( 18 ), "run", "jump", SubResource( 19 ), "idle", "jump", SubResource( 20 ), "jump_to_fall", "fall", SubResource( 21 ), "jump", "jump_to_fall", SubResource( 22 ), "attackfull", "run", SubResource( 23 ), "attackfull", "idle", SubResource( 24 ), "fall", "idle", SubResource( 25 ), "fall", "run", SubResource( 26 ), "idle", "fall", SubResource( 27 ), "run", "fall", SubResource( 28 ), "run", "dash", SubResource( 29 ), "idle", "dash", SubResource( 30 ), "dash", "jump", SubResource( 31 ), "dash", "fall", SubResource( 32 ), "dash", "run", SubResource( 33 ), "dash", "idle", SubResource( 34 ), "dash", "attackfull", SubResource( 35 ), "jump_to_fall", "wallSlide", SubResource( 83 ), "fall", "wallSlide", SubResource( 84 ), "wallSlide", "jump_to_fall", SubResource( 85 ), "wallSlide", "fall", SubResource( 86 ), "wallSlide", "jump", SubResource( 87 ), "jump", "wallSlide", SubResource( 88 ), "idle", "damage", SubResource( 91 ), "damage", "idle", SubResource( 92 ),  "attackfull", "dash", SubResource( 95 ) ]
+
 start_node = "idle"
 graph_offset = Vector2( -91.257, -69.118 )
 
@@ -1059,16 +1059,16 @@ graph_offset = Vector2( -107.5, -366.742 )
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=79]
 
-<<<<<<< HEAD
-[sub_resource type="RectangleShape2D" id=89]
+
+[sub_resource type="RectangleShape2D" id=96]
 extents = Vector2( 37.4708, 34.0525 )
 
-[sub_resource type="CapsuleShape2D" id=90]
+[sub_resource type="CapsuleShape2D" id=97]
 radius = 12.9372
 height = 55.2931
 
-=======
->>>>>>> 940eb93847be537a831cba8c9f5f424b598356b2
+
+
 [node name="Player" type="KinematicBody2D" groups=["Player"]]
 collision_layer = 0
 collision_mask = 17
@@ -1080,11 +1080,11 @@ scale = Vector2( 2, 2 )
 texture = ExtResource( 2 )
 hframes = 6
 vframes = 17
-<<<<<<< HEAD
+
 frame = 5
-=======
-frame = 2
->>>>>>> 940eb93847be537a831cba8c9f5f424b598356b2
+
+
+
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/RESET = SubResource( 80 )
@@ -1194,9 +1194,9 @@ rotation = -0.251327
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="ataquemelee"]
 position = Vector2( -17.3725, -37.6405 )
 rotation = -1.4207
-<<<<<<< HEAD
-shape = SubResource( 90 )
-=======
+
+shape = SubResource( 97 )
+
 
 [node name="espaciopersonal" type="Area2D" parent="."]
 collision_layer = 3
@@ -1208,4 +1208,4 @@ position = Vector2( -0.853889, -1.69302 )
 position = Vector2( 588.664, -443.167 )
 texture = ExtResource( 7 )
 hframes = 6
->>>>>>> 940eb93847be537a831cba8c9f5f424b598356b2
+
