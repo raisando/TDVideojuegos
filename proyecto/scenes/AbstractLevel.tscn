@@ -313,8 +313,8 @@ format = 1
 
 [node name="Portales" type="Node2D" parent="."]
 
-[node name="Enemigos" type="Node2D" parent="."]
-
 [node name="Player" parent="." instance=ExtResource( 1 )]
+
+[node name="Enemigos" type="Node2D" parent="."]
 
 [node name="pause" parent="." instance=ExtResource( 7 )]

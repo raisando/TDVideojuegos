@@ -8,4 +8,4 @@ func _ready():
 	back_button.connect("pressed", self, "on_back_pressed")
 
 func on_back_pressed():
-	get_tree().change_scene("res://scenes/menu.tscn")
+	LevelManager.change_scene(0)

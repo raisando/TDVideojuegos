@@ -11,6 +11,7 @@ func change_scene(value):
 			children.queue_free()
 		var nueva_escena = Escenas[value].instance()
 		Main.add_child(nueva_escena)
+		print_debug("Cambiamos de escena")
 		Actual = value
 		
 func reload_scene():

@@ -2,10 +2,11 @@ extends KinematicBody2D
 
 var linear_vel = Vector2.ZERO
 var direccion_x = 1
-var MAX_SPEED = 120
-var JUMP_SPEED = 300
-var ACCELERATION = 100
-var GRAVITY = 400
+const MAX_SPEED = 120
+const JUMP_SPEED = 300
+const ACCELERATION = 100
+const GRAVITY = 400
+const MINDISTANCE = 32
 
 export var start_direction = Vector2(1,0)
 
@@ -28,13 +29,16 @@ onready var Player
 func _ready():
 	
 	var Players = get_tree().get_nodes_in_group("Player")
+	print_debug(Players)
 	if Players.size() > 0:
-		Player = Players[0]
+		Player = Players[Players.size()-1]
 	#seguir = false
 	direccion_x = start_direction.x
 	recon_pared.cast_to.x *= direccion_x
 	AreaVision.connect("body_entered", self, "_on_body_entered")
 	AreaVision.connect("body_exited", self, "_on_body_exited")
+	$ataquemelee/CollisionShape2D.disabled = true
+	$ataquemelee/CollisionShape2D2.disabled = true
 	
 func _physics_process(delta):
 	
@@ -42,23 +46,42 @@ func _physics_process(delta):
 
 	if vida_enemigo <= 0:
 		queue_free()
-	var dir_seguir = Vector2(Player.global_position.x - global_position.x,0).normalized()
+	var dir_seguir = Vector2(Player.global_position.x - global_position.x,0)#
+	
+		
 	#seguir = false
 	
 	if not seguir:
 		if recon_pared.is_colliding():
 			direccion_x *= -1
 			recon_pared.cast_to.x *= -1
+			$Sprite.flip_h = not $Sprite.flip_h
+
+		if direccion_x > 0:
+			$Sprite.flip_h = false
+		else:
+			$Sprite.flip_h = true
+			
 		linear_vel.x = direccion_x * MAX_SPEED
 		linear_vel.y = delta * GRAVITY
+		$AnimationPlayer.play("Deambular")
 	
 		linear_vel = move_and_slide(linear_vel, Vector2.UP)
 	
 	#if recon_pared.is_colliding() and not seguir:
 	#	direccion_x *= -1
 	#	recon_pared.cast_to.x *= -1
-	if seguir:
-		move_and_collide(dir_seguir * MAX_SPEED * delta * 1.8)
+	if seguir and dir_seguir.length() > MINDISTANCE:
+		if dir_seguir.x > 0:
+			$Sprite.flip_h = false
+		else:
+			$Sprite.flip_h = true
+		if $AnimationPlayer.current_animation != "Deambular":
+			$AnimationPlayer.play("Deambular")
+		move_and_collide(dir_seguir.normalized() * MAX_SPEED * delta * 0.8)
+		
+	if seguir and dir_seguir.length() <= MINDISTANCE:
+		$AnimationPlayer.play("Ataque")
 
 	
 

@@ -47,6 +47,11 @@ func _ready() -> void:
 	var _er = PropPlayer.connect("killed", self, "on_killed")
 	ataque_melee.connect("body_entered", self, "on_ataquemelee_body_entered")
 	
+	$ataquemelee/CollisionShape2D.disabled = true
+	$ataquemelee/CollisionShape2D2.disabled = true
+	
+	
+	
 
 func _process(delta):
 	bullettimer+=delta
@@ -58,6 +63,13 @@ func _process(delta):
 func _physics_process(delta):
 	
 	if movil == false:
+		if Input.is_action_just_pressed("dash"):
+			_dashing = true
+			movil = true
+			_can_dash = false
+			playback.travel("dash")
+			$ataquemelee/CollisionShape2D.set_deferred("disabled",true)
+			$ataquemelee/CollisionShape2D2.set_deferred("disabled",true)
 		linear_vel.x = 0
 		linear_vel.y += GRAVITY * delta
 		linear_vel = move_and_slide(linear_vel,Vector2.UP)
@@ -74,7 +86,7 @@ func _physics_process(delta):
 		
 			
 		
-		linear_vel = move_and_slide(linear_vel,Vector2.UP)
+		linear_vel = move_and_slide(linear_vel,Vector2.UP,false,4,0.785398,false)
 		var on_floor = is_on_floor()
 		
 		linear_vel.y += GRAVITY * delta
@@ -265,5 +277,5 @@ func _fire():
 		bullettimer=0
 		
 func on_ataquemelee_body_entered(body: Node):
-	if body.is_in_group("enemigo") and has_method("quitar_vida"):
-		body.quitar_vida(20)
+	if body.is_in_group("enemigo") and body.has_method("quitar_vida"):
+		body.quitar_vida(10)
