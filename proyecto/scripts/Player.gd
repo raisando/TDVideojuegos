@@ -88,15 +88,14 @@ func _physics_process(delta):
 			_airborne_time += delta
 			
 		if (on_floor or _airborne_time <= _MAX_AIRBORNE_TIME or nextToWall()) and Input.is_action_just_pressed("jump"):
-			if nextToWall():
-				if nextToRightWall():
-					print("ntrw")
-					linear_vel.x -= 1000
-					linear_vel.y -= JUMP_SPEED
-				if nextToLeftWall():
-					print("ntlw")
-					linear_vel.x += 1000
-					linear_vel.y -= JUMP_SPEED
+			if nextToRightWall():
+				print("ntrw")
+				linear_vel.x += 100
+				linear_vel.y -= JUMP_SPEED
+			if nextToLeftWall():
+				print("ntlw")
+				linear_vel.x -= 100
+				linear_vel.y -= JUMP_SPEED
 			else:		
 				linear_vel.y = -JUMP_SPEED
 				_airborne_time = _MAX_AIRBORNE_TIME
