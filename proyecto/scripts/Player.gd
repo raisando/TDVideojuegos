@@ -15,7 +15,7 @@ var GRAVITY = 850
 var _facing_right = true
 var _airborne_time = 0
 var _MAX_AIRBORNE_TIME = 0.1
-var _ghost_state=false
+var _ghost_state = false
 var jump_count=0
 
 
@@ -80,7 +80,7 @@ func _physics_process(delta):
 		_ghost_state=not _ghost_state
 		
 	if _ghost_state==false:  #para modo humano
-		$spriteg.visible=false
+		$Ghost.visible=false
 		$Sprite.visible=true
 		jump_count=2
 		
@@ -158,7 +158,7 @@ func _physics_process(delta):
 			_facing_right = false	
 	
 	else:  #para modo fantasma
-		$spriteg.visible=true
+		$Ghost.visible=true
 		$Sprite.visible=false
 		
 		linear_vel = move_and_slide(linear_vel,Vector2.UP)
@@ -258,7 +258,8 @@ func nextToLeftWall():
 
 #func on_killed():
 	
-
+func quitar_vida_player(value):
+	PropPlayer.Vida -= value
 
 # dejar al final
 func _unhandled_key_input(event: InputEventKey) -> void:

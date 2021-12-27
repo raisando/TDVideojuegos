@@ -20,3 +20,4 @@ func quitar_vida(value):
 	print(vida_enemigo)
 
 
+

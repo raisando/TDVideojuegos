@@ -28,6 +28,7 @@ onready var Player
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	
+	
 	var Players = get_tree().get_nodes_in_group("Player")
 	print_debug(Players)
 	if Players.size() > 0:
@@ -39,6 +40,8 @@ func _ready():
 	AreaVision.connect("body_exited", self, "_on_body_exited")
 	$ataquemelee/CollisionShape2D.disabled = true
 	$ataquemelee/CollisionShape2D2.disabled = true
+	
+	$ataquemelee.connect("body_entered", self, "on_ataquemelee_player_body_entered")
 	
 func _physics_process(delta):
 	
@@ -107,3 +110,7 @@ func quitar_vida(value):
 	vida_enemigo -= value
 	print(vida_enemigo)
 
+func on_ataquemelee_player_body_entered(body: Node):
+	if body.is_in_group("Player") and body.has_method("quitar_vida_player"):
+		#body.quitar_vida(5)
+		pass

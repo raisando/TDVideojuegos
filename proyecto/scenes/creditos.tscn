@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://scenes/creditos.gd" type="Script" id=1]
+[ext_resource path="res://font/newfont.tres" type="DynamicFont" id=2]
 
 [node name="CanvasLayer" type="CanvasLayer"]
 script = ExtResource( 1 )
@@ -10,7 +11,24 @@ anchor_right = 0.145
 anchor_bottom = 0.054
 margin_right = 639.52
 margin_bottom = 107.6
-text = "insertar creditos xd"
+custom_fonts/font = ExtResource( 2 )
+text = "[Puntito] Christopher Marin
+Elías Zelada
+Demetrio Rojas
+Emilio Castro
+Raimundo Sandoval
+
+nightborne warrior by CreativeKind
+Fireball Spell by Clint Bellanger
+Underwater Fantasy Pixel Art Environment by ansimuz
+Hero's Journey - Taiga Forest by Anokolisa
+32x32 2D Portal Asset Pack by actuallyKron
+Animated pixel art skeleton by AstroBob
+Warrior-Free Animation set V1.3 by Clembod
+Moten lava 32 x 32 tile set for Platformer Games by Chrishendoh
+Destroyed City Parallax Background by Miontomaru Magnusson
+Fantasy Paltformer Complete by Szadi art
+Simple Platformer Tileset 16x16 sprites by BlueBlade"
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -21,6 +39,7 @@ margin_top = 450.0
 margin_right = 817.0
 margin_bottom = 470.0
 rect_scale = Vector2( 11.8314, 4.05548 )
+custom_fonts/font = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -32,7 +51,7 @@ margin_left = 821.0
 margin_top = 467.0
 margin_right = 843.52
 margin_bottom = 508.6
-text = "poner icono pa volver"
+text = "Volver"
 __meta__ = {
 "_edit_use_anchors_": false
 }

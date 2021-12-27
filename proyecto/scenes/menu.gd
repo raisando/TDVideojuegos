@@ -1,9 +1,9 @@
 extends CanvasLayer
 
 
-onready var play_button=$VBoxContainer/Play
-onready var Credits_button=$VBoxContainer/Credits
-onready var Quit_button=$VBoxContainer/Quit
+onready var play_button=$MarginContainer/VBoxContainer/Play
+onready var Credits_button=$MarginContainer/VBoxContainer/Credits
+onready var Quit_button=$MarginContainer/VBoxContainer/Quit
 
 func _ready():
 	play_button.connect("pressed", self, "on_play_pressed")
