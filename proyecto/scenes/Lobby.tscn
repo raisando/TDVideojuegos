@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://scenes/AbstractLevel.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Portal.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scenes/Enemigo(RigBod).tscn" type="PackedScene" id=3]
+[ext_resource path="res://scenes/caster.tscn" type="PackedScene" id=4]
 
 [node name="Lobby" instance=ExtResource( 1 )]
 
@@ -27,10 +28,13 @@ position = Vector2( -424, -48 )
 position = Vector2( 280, 536 )
 escena_destino = 4
 
+[node name="Player" parent="." index="4"]
+position = Vector2( 784, 456 )
+
 [node name="Enemigo" parent="Enemigos" index="0" instance=ExtResource( 3 )]
 position = Vector2( 1065.22, 422.188 )
 
-[node name="Player" parent="." index="5"]
-position = Vector2( 784, 456 )
+[node name="caster" parent="Enemigos" index="1" instance=ExtResource( 4 )]
+position = Vector2( 429, 488 )
 
 [editable path="Portales/Portal2"]
