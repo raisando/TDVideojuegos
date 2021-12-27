@@ -1037,7 +1037,11 @@ texture = ExtResource( 2 )
 hframes = 6
 vframes = 17
 
+
 frame = 1
+
+
+
 
 
 
