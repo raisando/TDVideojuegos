@@ -82,6 +82,10 @@ func _physics_process(delta):
 		
 	if seguir and dir_seguir.length() <= MINDISTANCE:
 		$AnimationPlayer.play("Ataque")
+		if dir_seguir.x > 0:
+			$ataquemelee.scale.x = 1
+		else:
+			$ataquemelee.scale.x = -1
 
 	
 
