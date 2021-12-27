@@ -232,6 +232,7 @@ func nextToLeftWall():
 func _unhandled_key_input(event: InputEventKey) -> void:
 	if event.pressed and event.scancode == KEY_0:
 		PropPlayer.Vida -= 10
+		playback.travel('damage')
 	if event.pressed and event.scancode == KEY_R:
 		LevelManager.reload_scene()
 		
