@@ -80,7 +80,7 @@ func _physics_process(delta):
 		_ghost_state=not _ghost_state
 		
 	if _ghost_state==false:  #para modo humano
-		$spriteg.visible=false
+		$Ghost.visible=false
 		$Sprite.visible=true
 		jump_count=2
 		
@@ -158,7 +158,7 @@ func _physics_process(delta):
 			_facing_right = false	
 	
 	else:  #para modo fantasma
-		$spriteg.visible=true
+		$Ghost.visible=true
 		$Sprite.visible=false
 		
 		linear_vel = move_and_slide(linear_vel,Vector2.UP)
@@ -200,6 +200,7 @@ func _physics_process(delta):
 				_can_dash = true
 		
 		if Input.is_action_just_pressed("attack"):
+			playbackg.travel("atackfull")
 			_fire()
 				
 			
