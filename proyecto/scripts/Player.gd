@@ -100,15 +100,14 @@ func _physics_process(delta):
 			_airborne_time += delta
 			
 		if (on_floor or _airborne_time <= _MAX_AIRBORNE_TIME or nextToWall()) and Input.is_action_just_pressed("jump"):
-			if nextToWall():
-				if nextToRightWall():
-					print("ntrw")
-					linear_vel.x -= 1000
-					linear_vel.y -= JUMP_SPEED
-				if nextToLeftWall():
-					print("ntlw")
-					linear_vel.x += 1000
-					linear_vel.y -= JUMP_SPEED
+			if nextToRightWall():
+				print("ntrw")
+				linear_vel.x += 100
+				linear_vel.y -= JUMP_SPEED
+			if nextToLeftWall():
+				print("ntlw")
+				linear_vel.x -= 100
+				linear_vel.y -= JUMP_SPEED
 			else:		
 				linear_vel.y = -JUMP_SPEED
 				_airborne_time = _MAX_AIRBORNE_TIME
@@ -264,6 +263,7 @@ func nextToLeftWall():
 func _unhandled_key_input(event: InputEventKey) -> void:
 	if event.pressed and event.scancode == KEY_0:
 		PropPlayer.Vida -= 10
+		playback.travel('damage')
 	if event.pressed and event.scancode == KEY_R:
 		LevelManager.reload_scene()
 		
