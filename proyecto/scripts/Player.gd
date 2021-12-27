@@ -29,13 +29,24 @@ var _dashing = false
 var player_en_portal = false
 var portal_seleccionado
 
+var bullet = preload("res://scenes/bullet.tscn")
+
 onready var Player = get_parent().get_node("Player")
 onready var playback = $AnimationTree.get("parameters/playback")
 onready var playbackg = $AnimationTreeg.get("parameters/playback")
 onready var Entrada = $Entrada
+var _can_shoot=true
 
 func _ready() -> void:
 	var _er = PropPlayer.connect("killed", self, "on_killed")
+
+var bullettimer=0
+func _process(delta):
+	bullettimer+=delta
+	if bullettimer>1:
+		_can_shoot=true
+	else:
+		_can_shoot=false
 
 func _physics_process(delta):
 	
@@ -169,7 +180,9 @@ func _physics_process(delta):
 				
 				yield(get_tree().create_timer(4),"timeout")
 				_can_dash = true
-				
+		
+		if Input.is_action_just_pressed("attack"):
+			_fire()
 				
 			
 		#animations
@@ -234,6 +247,17 @@ func _unhandled_key_input(event: InputEventKey) -> void:
 		PropPlayer.Vida -= 10
 	if event.pressed and event.scancode == KEY_R:
 		LevelManager.reload_scene()
+		
+func _fire():
+	if _can_shoot:
+		var Bullet=bullet.instance()
+		get_parent().add_child(Bullet)
+		Bullet.global_position=$bulletspawn.global_position
+		if not _facing_right:
+			Bullet.rotation= PI
+		bullettimer=0
+		
+		
 		
 
 
