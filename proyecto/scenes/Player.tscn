@@ -1,4 +1,4 @@
-[gd_scene load_steps=102 format=2]
+[gd_scene load_steps=105 format=2]
 
 [ext_resource path="res://scripts/Player.gd" type="Script" id=1]
 [ext_resource path="res://sprites/Warrior/SpriteSheet/Warrior_Sheet-Effect.png" type="Texture" id=2]
@@ -619,11 +619,10 @@ switch_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=91]
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=95]
-
 [sub_resource type="AnimationNodeStateMachineTransition" id=92]
 switch_mode = 2
 
+[sub_resource type="AnimationNodeStateMachineTransition" id=95]
 
 [sub_resource type="AnimationNodeStateMachine" id=36]
 states/attackfull/node = SubResource( 8 )
@@ -644,11 +643,7 @@ states/run/node = SubResource( 14 )
 states/run/position = Vector2( 432, 300 )
 states/wallSlide/node = SubResource( 82 )
 states/wallSlide/position = Vector2( 961.743, 73.5487 )
-
-
-
-transitions = [ "run", "idle", SubResource( 15 ), "idle", "run", SubResource( 16 ), "run", "attackfull", SubResource( 17 ), "idle", "attackfull", SubResource( 18 ), "run", "jump", SubResource( 19 ), "idle", "jump", SubResource( 20 ), "jump_to_fall", "fall", SubResource( 21 ), "jump", "jump_to_fall", SubResource( 22 ), "attackfull", "run", SubResource( 23 ), "attackfull", "idle", SubResource( 24 ), "fall", "idle", SubResource( 25 ), "fall", "run", SubResource( 26 ), "idle", "fall", SubResource( 27 ), "run", "fall", SubResource( 28 ), "run", "dash", SubResource( 29 ), "idle", "dash", SubResource( 30 ), "dash", "jump", SubResource( 31 ), "dash", "fall", SubResource( 32 ), "dash", "run", SubResource( 33 ), "dash", "idle", SubResource( 34 ), "dash", "attackfull", SubResource( 35 ), "jump_to_fall", "wallSlide", SubResource( 83 ), "fall", "wallSlide", SubResource( 84 ), "wallSlide", "jump_to_fall", SubResource( 85 ), "wallSlide", "fall", SubResource( 86 ), "wallSlide", "jump", SubResource( 87 ), "jump", "wallSlide", SubResource( 88 ), "idle", "damage", SubResource( 91 ), "damage", "idle", SubResource( 92 ),  "attackfull", "dash", SubResource( 95 ) ]
-
+transitions = [ "run", "idle", SubResource( 15 ), "idle", "run", SubResource( 16 ), "run", "attackfull", SubResource( 17 ), "idle", "attackfull", SubResource( 18 ), "run", "jump", SubResource( 19 ), "idle", "jump", SubResource( 20 ), "jump_to_fall", "fall", SubResource( 21 ), "jump", "jump_to_fall", SubResource( 22 ), "attackfull", "run", SubResource( 23 ), "attackfull", "idle", SubResource( 24 ), "fall", "idle", SubResource( 25 ), "fall", "run", SubResource( 26 ), "idle", "fall", SubResource( 27 ), "run", "fall", SubResource( 28 ), "run", "dash", SubResource( 29 ), "idle", "dash", SubResource( 30 ), "dash", "jump", SubResource( 31 ), "dash", "fall", SubResource( 32 ), "dash", "run", SubResource( 33 ), "dash", "idle", SubResource( 34 ), "dash", "attackfull", SubResource( 35 ), "jump_to_fall", "wallSlide", SubResource( 83 ), "fall", "wallSlide", SubResource( 84 ), "wallSlide", "jump_to_fall", SubResource( 85 ), "wallSlide", "fall", SubResource( 86 ), "wallSlide", "jump", SubResource( 87 ), "jump", "wallSlide", SubResource( 88 ), "idle", "damage", SubResource( 91 ), "damage", "idle", SubResource( 92 ), "attackfull", "dash", SubResource( 95 ) ]
 start_node = "idle"
 graph_offset = Vector2( -91.257, -69.118 )
 
@@ -1059,15 +1054,12 @@ graph_offset = Vector2( -107.5, -366.742 )
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=79]
 
-
-[sub_resource type="RectangleShape2D" id=96]
-extents = Vector2( 37.4708, 34.0525 )
+[sub_resource type="RectangleShape2D" id=98]
+extents = Vector2( 47.6867, 33.6058 )
 
 [sub_resource type="CapsuleShape2D" id=97]
 radius = 12.9372
 height = 55.2931
-
-
 
 [node name="Player" type="KinematicBody2D" groups=["Player"]]
 collision_layer = 0
@@ -1080,11 +1072,7 @@ scale = Vector2( 2, 2 )
 texture = ExtResource( 2 )
 hframes = 6
 vframes = 17
-
 frame = 5
-
-
-
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/RESET = SubResource( 80 )
@@ -1188,24 +1176,16 @@ collision_layer = 8
 collision_mask = 8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ataquemelee"]
-position = Vector2( 28.2379, -14.9961 )
+position = Vector2( 16.4974, -16.7825 )
 rotation = -0.251327
+shape = SubResource( 98 )
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="ataquemelee"]
 position = Vector2( -17.3725, -37.6405 )
 rotation = -1.4207
-
 shape = SubResource( 97 )
-
-
-[node name="espaciopersonal" type="Area2D" parent="."]
-collision_layer = 3
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="espaciopersonal"]
-position = Vector2( -0.853889, -1.69302 )
 
 [node name="ghost" type="Sprite" parent="."]
 position = Vector2( 588.664, -443.167 )
 texture = ExtResource( 7 )
 hframes = 6
-
