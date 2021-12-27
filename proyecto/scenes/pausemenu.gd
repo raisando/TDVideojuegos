@@ -3,14 +3,12 @@ extends CanvasLayer
 
 onready var pause_menu = $Panel
 onready var continue_btn = $Panel/VBoxContainer/Continue
-onready var main_menu_btn = $Panel/VBoxContainer/MainMenu
 onready var lobby_btn = $Panel/VBoxContainer/Lobby
 onready var quit_btn = $Panel/VBoxContainer/Quit
 
 
 func _ready() -> void:
 	continue_btn.connect("pressed", self, "on_continue_pressed")
-	main_menu_btn.connect("pressed", self, "on_main_menu_pressed")
 	lobby_btn.connect("pressed", self, "on_lobby_pressed")
 	quit_btn.connect("pressed", self, "__on_quit_pressed")
 	
@@ -26,10 +24,6 @@ func on_continue_pressed():
 		!pause_menu.hide()
 		get_tree().paused = !get_tree().paused
 
-
-func on_main_menu_pressed():
-	get_tree().change_scene("res://scenes/menu.tscn")
-	get_tree().paused = false
 	
 func on_lobby_pressed():
 	get_tree().change_scene("res://scenes/Lobby.tscn")
