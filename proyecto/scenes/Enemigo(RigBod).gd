@@ -14,6 +14,7 @@ export var start_direction = Vector2(1,0)
 var seguir = false
 var _facing_right = true
 var vida_enemigo = 60
+var attacking = false
 
 var is_alive = true
 # Declare member variables here. Examples:
@@ -58,7 +59,7 @@ func _physics_process(delta):
 			
 		#seguir = false
 		
-		if not seguir:
+		if not seguir and not attacking:
 			if recon_pared.is_colliding():
 				direccion_x *= -1
 				recon_pared.cast_to.x *= -1
@@ -78,7 +79,7 @@ func _physics_process(delta):
 		#if recon_pared.is_colliding() and not seguir:
 		#	direccion_x *= -1
 		#	recon_pared.cast_to.x *= -1
-		if seguir and dir_seguir.length() > MINDISTANCE:
+		if seguir and dir_seguir.length() > MINDISTANCE and not attacking:
 			if dir_seguir.x > 0:
 				$Sprite.flip_h = false
 			else:
@@ -87,12 +88,16 @@ func _physics_process(delta):
 				$AnimationPlayer.play("Deambular")
 			move_and_collide(dir_seguir.normalized() * MAX_SPEED * delta * 0.8)
 			
-		if seguir and dir_seguir.length() <= MINDISTANCE:
-			$AnimationPlayer.play("Ataque")
+		if seguir and dir_seguir.length() <= MINDISTANCE and not attacking:
+			attacking = true
 			if dir_seguir.x > 0:
 				$ataquemelee.scale.x = 1
 			else:
 				$ataquemelee.scale.x = -1
+			$AnimationPlayer.play("Ataque")
+			yield($AnimationPlayer,"animation_finished")
+			attacking = false
+
 
 	
 

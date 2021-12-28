@@ -274,6 +274,10 @@ func nextToLeftWall():
 	
 func quitar_vida_player(value):
 	PropPlayer.Vida -= value
+	if not _ghost_state:
+		playback.call_deferred("travel","damage")
+	else:
+		$AnimationPlayerg.call_deferred("play","damage")
 
 
 		

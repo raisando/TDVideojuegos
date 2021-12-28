@@ -1,4 +1,4 @@
-[gd_scene load_steps=90 format=2]
+[gd_scene load_steps=92 format=2]
 
 [ext_resource path="res://scripts/Player.gd" type="Script" id=1]
 [ext_resource path="res://sprites/Warrior/SpriteSheet/Warrior_Sheet-Effect.png" type="Texture" id=2]
@@ -203,6 +203,20 @@ tracks/5/keys = {
 
 [sub_resource type="Animation" id=89]
 resource_name = "damage"
+length = 0.5
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 37, 38, 39, 40 ]
+}
 
 [sub_resource type="Animation" id=2]
 resource_name = "dash"
@@ -581,11 +595,16 @@ switch_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=115]
 
+[sub_resource type="AnimationNodeStateMachineTransition" id=126]
+switch_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=127]
+
 [sub_resource type="AnimationNodeStateMachine" id=36]
 states/attackfull/node = SubResource( 8 )
 states/attackfull/position = Vector2( 155, -17 )
 states/damage/node = SubResource( 90 )
-states/damage/position = Vector2( 701.743, -192.454 )
+states/damage/position = Vector2( 711.726, -190.454 )
 states/dash/node = SubResource( 9 )
 states/dash/position = Vector2( 155, 190.436 )
 states/fall/node = SubResource( 10 )
@@ -600,9 +619,9 @@ states/run/node = SubResource( 14 )
 states/run/position = Vector2( 432, 300 )
 states/wallSlide/node = SubResource( 82 )
 states/wallSlide/position = Vector2( 961.743, 73.5487 )
-transitions = [ "run", "idle", SubResource( 15 ), "idle", "run", SubResource( 16 ), "run", "attackfull", SubResource( 17 ), "idle", "attackfull", SubResource( 18 ), "run", "jump", SubResource( 19 ), "idle", "jump", SubResource( 20 ), "jump_to_fall", "fall", SubResource( 21 ), "jump", "jump_to_fall", SubResource( 22 ), "attackfull", "run", SubResource( 23 ), "attackfull", "idle", SubResource( 24 ), "fall", "idle", SubResource( 25 ), "fall", "run", SubResource( 26 ), "idle", "fall", SubResource( 27 ), "run", "fall", SubResource( 28 ), "run", "dash", SubResource( 29 ), "idle", "dash", SubResource( 30 ), "dash", "jump", SubResource( 31 ), "dash", "fall", SubResource( 32 ), "dash", "run", SubResource( 33 ), "dash", "idle", SubResource( 34 ), "dash", "attackfull", SubResource( 35 ), "jump_to_fall", "wallSlide", SubResource( 83 ), "fall", "wallSlide", SubResource( 84 ), "wallSlide", "jump_to_fall", SubResource( 85 ), "wallSlide", "fall", SubResource( 86 ), "wallSlide", "jump", SubResource( 87 ), "jump", "wallSlide", SubResource( 88 ), "idle", "damage", SubResource( 91 ), "damage", "idle", SubResource( 92 ), "attackfull", "dash", SubResource( 115 ) ]
+transitions = [ "run", "idle", SubResource( 15 ), "idle", "run", SubResource( 16 ), "run", "attackfull", SubResource( 17 ), "idle", "attackfull", SubResource( 18 ), "run", "jump", SubResource( 19 ), "idle", "jump", SubResource( 20 ), "jump_to_fall", "fall", SubResource( 21 ), "jump", "jump_to_fall", SubResource( 22 ), "attackfull", "run", SubResource( 23 ), "attackfull", "idle", SubResource( 24 ), "fall", "idle", SubResource( 25 ), "fall", "run", SubResource( 26 ), "idle", "fall", SubResource( 27 ), "run", "fall", SubResource( 28 ), "run", "dash", SubResource( 29 ), "idle", "dash", SubResource( 30 ), "dash", "jump", SubResource( 31 ), "dash", "fall", SubResource( 32 ), "dash", "run", SubResource( 33 ), "dash", "idle", SubResource( 34 ), "dash", "attackfull", SubResource( 35 ), "jump_to_fall", "wallSlide", SubResource( 83 ), "fall", "wallSlide", SubResource( 84 ), "wallSlide", "jump_to_fall", SubResource( 85 ), "wallSlide", "fall", SubResource( 86 ), "wallSlide", "jump", SubResource( 87 ), "jump", "wallSlide", SubResource( 88 ), "idle", "damage", SubResource( 91 ), "damage", "idle", SubResource( 92 ), "attackfull", "dash", SubResource( 115 ), "damage", "run", SubResource( 126 ), "run", "damage", SubResource( 127 ) ]
 start_node = "idle"
-graph_offset = Vector2( -54.257, 258.674 )
+graph_offset = Vector2( -54.257, -328.003 )
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=37]
 
@@ -1116,4 +1135,4 @@ scale = Vector2( 2, 2 )
 texture = ExtResource( 7 )
 hframes = 23
 vframes = 5
-frame = 23
+frame = 6

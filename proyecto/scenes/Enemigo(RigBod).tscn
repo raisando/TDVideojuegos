@@ -13,7 +13,6 @@ extents = Vector2( 136.369, 32.4457 )
 [sub_resource type="Animation" id=6]
 resource_name = "Ataque"
 length = 1.95
-loop = true
 step = 0.05
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame_coords")
@@ -267,11 +266,11 @@ tracks/6/keys = {
 
 [sub_resource type="CapsuleShape2D" id=7]
 radius = 23.3454
-height = 54.128
+height = 45.2397
 
 [sub_resource type="CapsuleShape2D" id=8]
 radius = 22.1794
-height = 85.3817
+height = 48.1255
 
 [node name="Enemigo" type="KinematicBody2D" groups=["enemigo"]]
 collision_layer = 8
@@ -321,11 +320,11 @@ collision_layer = 4
 collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ataquemelee"]
-position = Vector2( 14.0317, -22.0497 )
+position = Vector2( 23.2345, -19.2181 )
 rotation = -1.31772
 shape = SubResource( 7 )
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="ataquemelee"]
-position = Vector2( 1.33635, -14.0317 )
+position = Vector2( 19.9779, -8.60442 )
 rotation = -1.32121
 shape = SubResource( 8 )
