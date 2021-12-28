@@ -1,4 +1,4 @@
-[gd_scene load_steps=99 format=2]
+[gd_scene load_steps=91 format=2]
 
 [ext_resource path="res://scripts/Player.gd" type="Script" id=1]
 [ext_resource path="res://sprites/Warrior/SpriteSheet/Warrior_Sheet-Effect.png" type="Texture" id=2]
@@ -487,9 +487,6 @@ tracks/2/keys = {
 "values": [ 60, 61, 62 ]
 }
 
-[sub_resource type="AnimationNodeAnimation" id=116]
-animation = "Muerte"
-
 [sub_resource type="AnimationNodeAnimation" id=8]
 animation = "attackfull"
 
@@ -585,23 +582,7 @@ switch_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=115]
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=117]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=118]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=119]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=120]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=121]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=122]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=123]
-
 [sub_resource type="AnimationNodeStateMachine" id=36]
-states/Muerte/node = SubResource( 116 )
-states/Muerte/position = Vector2( 600.743, 403.882 )
 states/attackfull/node = SubResource( 8 )
 states/attackfull/position = Vector2( 155, -17 )
 states/damage/node = SubResource( 90 )
@@ -620,9 +601,9 @@ states/run/node = SubResource( 14 )
 states/run/position = Vector2( 432, 300 )
 states/wallSlide/node = SubResource( 82 )
 states/wallSlide/position = Vector2( 961.743, 73.5487 )
-transitions = [ "run", "idle", SubResource( 15 ), "idle", "run", SubResource( 16 ), "run", "attackfull", SubResource( 17 ), "idle", "attackfull", SubResource( 18 ), "run", "jump", SubResource( 19 ), "idle", "jump", SubResource( 20 ), "jump_to_fall", "fall", SubResource( 21 ), "jump", "jump_to_fall", SubResource( 22 ), "attackfull", "run", SubResource( 23 ), "attackfull", "idle", SubResource( 24 ), "fall", "idle", SubResource( 25 ), "fall", "run", SubResource( 26 ), "idle", "fall", SubResource( 27 ), "run", "fall", SubResource( 28 ), "run", "dash", SubResource( 29 ), "idle", "dash", SubResource( 30 ), "dash", "jump", SubResource( 31 ), "dash", "fall", SubResource( 32 ), "dash", "run", SubResource( 33 ), "dash", "idle", SubResource( 34 ), "dash", "attackfull", SubResource( 35 ), "jump_to_fall", "wallSlide", SubResource( 83 ), "fall", "wallSlide", SubResource( 84 ), "wallSlide", "jump_to_fall", SubResource( 85 ), "wallSlide", "fall", SubResource( 86 ), "wallSlide", "jump", SubResource( 87 ), "jump", "wallSlide", SubResource( 88 ), "idle", "damage", SubResource( 91 ), "damage", "idle", SubResource( 92 ), "attackfull", "dash", SubResource( 115 ), "attackfull", "Muerte", SubResource( 117 ), "dash", "Muerte", SubResource( 118 ), "idle", "Muerte", SubResource( 119 ), "run", "Muerte", SubResource( 120 ), "fall", "Muerte", SubResource( 121 ), "jump_to_fall", "Muerte", SubResource( 122 ), "jump", "Muerte", SubResource( 123 ) ]
+transitions = [ "run", "idle", SubResource( 15 ), "idle", "run", SubResource( 16 ), "run", "attackfull", SubResource( 17 ), "idle", "attackfull", SubResource( 18 ), "run", "jump", SubResource( 19 ), "idle", "jump", SubResource( 20 ), "jump_to_fall", "fall", SubResource( 21 ), "jump", "jump_to_fall", SubResource( 22 ), "attackfull", "run", SubResource( 23 ), "attackfull", "idle", SubResource( 24 ), "fall", "idle", SubResource( 25 ), "fall", "run", SubResource( 26 ), "idle", "fall", SubResource( 27 ), "run", "fall", SubResource( 28 ), "run", "dash", SubResource( 29 ), "idle", "dash", SubResource( 30 ), "dash", "jump", SubResource( 31 ), "dash", "fall", SubResource( 32 ), "dash", "run", SubResource( 33 ), "dash", "idle", SubResource( 34 ), "dash", "attackfull", SubResource( 35 ), "jump_to_fall", "wallSlide", SubResource( 83 ), "fall", "wallSlide", SubResource( 84 ), "wallSlide", "jump_to_fall", SubResource( 85 ), "wallSlide", "fall", SubResource( 86 ), "wallSlide", "jump", SubResource( 87 ), "jump", "wallSlide", SubResource( 88 ), "idle", "damage", SubResource( 91 ), "damage", "idle", SubResource( 92 ), "attackfull", "dash", SubResource( 115 ) ]
 start_node = "idle"
-graph_offset = Vector2( -54.257, -180.118 )
+graph_offset = Vector2( -54.257, 258.674 )
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=37]
 
@@ -1134,9 +1115,9 @@ rotation = -1.4207
 shape = SubResource( 97 )
 
 [node name="Ghost" type="Sprite" parent="."]
+visible = false
 position = Vector2( -5.87108, -16.1488 )
 scale = Vector2( 2, 2 )
 texture = ExtResource( 7 )
 hframes = 23
 vframes = 5
-frame = 23

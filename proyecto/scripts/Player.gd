@@ -67,10 +67,13 @@ func _physics_process(delta):
 			#playback.travel("Muerte")
 			#movil = false
 			set_deferred("is_alive",false)
+			
 			#playback.travel("Muerte")
 			if not _ghost_state:
+				$AnimationTree.active=false
 				$AnimationPlayer.call_deferred("play","Muerte")
 			else: 
+				$AnimationTreeg.active=false
 				$AnimationPlayerg.call_deferred("play","death")
 			
 		if movil == false:
