@@ -98,7 +98,9 @@ pause={
 2d_physics/layer_2="Paredes invisibles"
 2d_physics/layer_3="Daño al jugador"
 2d_physics/layer_4="Daño a enemigos"
+2d_physics/layer_5="Daño al jugadorg"
 2d_physics/layer_6="Portales"
+2d_physics/layer_7="Daño al enemigosg"
 
 [physics]
 

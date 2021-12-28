@@ -17,6 +17,7 @@ var _airborne_time = 0
 var _MAX_AIRBORNE_TIME = 0.1
 var _ghost_state = false
 var jump_count=0
+var is_alive = true
 
 
 # Vida = PropPlayer.Vida 
@@ -44,7 +45,7 @@ onready var ataque_melee = $ataquemelee
 var _can_shoot=true
 
 func _ready() -> void:
-	var _er = PropPlayer.connect("killed", self, "on_killed")
+	#var _er = PropPlayer.connect("killed", self, "on_killed")
 	ataque_melee.connect("body_entered", self, "on_ataquemelee_body_entered")
 	
 	$ataquemelee/CollisionShape2D.disabled = true
@@ -61,184 +62,194 @@ func _process(delta):
 		_can_shoot=false
 
 func _physics_process(delta):
-	
-	if movil == false:
-		if Input.is_action_just_pressed("dash"):
-			_dashing = true
-			movil = true
-			_can_dash = false
-			playback.travel("dash")
-			$ataquemelee/CollisionShape2D.set_deferred("disabled",true)
-			$ataquemelee/CollisionShape2D2.set_deferred("disabled",true)
-		linear_vel.x = 0
-		linear_vel.y += GRAVITY * delta
-		linear_vel = move_and_slide(linear_vel,Vector2.UP)
-		return
-	
-	
-	if Input.is_action_just_released("change_char"): #me cambia el estado del personaje
-		_ghost_state=not _ghost_state
-		
-	if _ghost_state==false:  #para modo humano
-		$Ghost.visible=false
-		$Sprite.visible=true
-		jump_count=2
-		
+	if is_alive:
+		if PropPlayer.Vida <= 0:
+			#playback.travel("Muerte")
+			#movil = false
+			set_deferred("is_alive",false)
+			#playback.travel("Muerte")
+			if not _ghost_state:
+				$AnimationPlayer.call_deferred("play","Muerte")
+			else: 
+				$AnimationPlayerg.call_deferred("play","death")
 			
-		
-		linear_vel = move_and_slide(linear_vel,Vector2.UP,false,4,0.785398,false)
-		var on_floor = is_on_floor()
-		
-		linear_vel.y += GRAVITY * delta
-		
-		var target_vel = Input.get_action_strength("right") - Input.get_action_strength("left")
-		linear_vel.x = move_toward(linear_vel.x,target_vel * MAX_SPEED,ACCELERATION) 
-		
-		if on_floor or nextToWall():
-			_airborne_time = 0
-		else:
-			_airborne_time += delta
-			
-		if (on_floor or _airborne_time <= _MAX_AIRBORNE_TIME or nextToWall()) and Input.is_action_just_pressed("jump"):
-			if nextToRightWall():
-				print("ntrw")
-				linear_vel.x += 100
-				linear_vel.y -= JUMP_SPEED
-			if nextToLeftWall():
-				print("ntlw")
-				linear_vel.x -= 100
-				linear_vel.y -= JUMP_SPEED
-			else:		
-				linear_vel.y = -JUMP_SPEED
-				_airborne_time = _MAX_AIRBORNE_TIME
-
-		if (on_floor or _airborne_time <= _MAX_AIRBORNE_TIME and _can_dash) and Input.is_action_just_pressed("dash"):
-			_dashing = true
-			_can_dash  = false
-		if _dashing:
-			_dashing_time += delta
-			if _facing_right:
-				linear_vel.x = DASH_SPEED
-			else:
-				linear_vel.x = -DASH_SPEED
-			if _dashing_time >= DASH_TIME:
-				_dashing = false
-				_dashing_time = 0
-				
-				yield(get_tree().create_timer(4),"timeout")
-				_can_dash = true
-				
-			
-			
-		#animations
-		if on_floor:
-			if abs(linear_vel.x)> 10 and not _dashing:
-				playback.travel("run")
-			elif Input.is_action_pressed("dash"):
+		if movil == false:
+			if Input.is_action_just_pressed("dash"):
+				_dashing = true
+				movil = true
+				_can_dash = false
 				playback.travel("dash")
-			elif Input.is_action_just_pressed("attack"):
-				playback.travel("attackfull")
-			else:
-				playback.travel("idle")
+				$ataquemelee/CollisionShape2D.set_deferred("disabled",true)
+				$ataquemelee/CollisionShape2D2.set_deferred("disabled",true)
+			linear_vel.x = 0
+			linear_vel.y += GRAVITY * delta
+			linear_vel = move_and_slide(linear_vel,Vector2.UP)
+			return
 		
-		else:
-			if linear_vel.y >0:
-				playback.travel("fall")
-				if nextToWall():
-					playback.travel("wallSlide")
-			else:
-				playback.travel("jump")
 		
-		if not _facing_right and Input.is_action_pressed("right") and not Input.is_action_pressed("left"):
-			scale.x = -1
-			_facing_right = true
-
-		if  _facing_right and Input.is_action_pressed("left") and not Input.is_action_pressed("right"):
-			scale.x = -1
-			_facing_right = false	
-	
-	else:  #para modo fantasma
-		$Ghost.visible=true
-		$Sprite.visible=false
-		
-		linear_vel = move_and_slide(linear_vel,Vector2.UP)
-		var on_floor = is_on_floor()
-		
-		linear_vel.y += GRAVITY * delta
-		
-		var target_vel = Input.get_action_strength("right") - Input.get_action_strength("left")
-		linear_vel.x = move_toward(linear_vel.x,target_vel * MAX_SPEED,ACCELERATION) 
-		
-		if on_floor:
-			_airborne_time = 0
-			jump_count=0
-		else:
-			_airborne_time += delta
+		if Input.is_action_just_released("change_char"): #me cambia el estado del personaje
+			_ghost_state=not _ghost_state
 			
-		if Input.is_action_just_pressed("jump") and jump_count!=2:
-			linear_vel.y = -JUMP_SPEED+GRAVITY*delta
-			_airborne_time = _MAX_AIRBORNE_TIME
-			jump_count+=1
-		else:
-			_airborne_time=0
+		if _ghost_state==false:  #para modo humano
+			$Ghost.visible=false
+			$Sprite.visible=true
+			jump_count=2
 			
-			
-		if (on_floor or _airborne_time <= _MAX_AIRBORNE_TIME and _can_dash) and Input.is_action_just_pressed("dash"):
-			_dashing = true
-			_can_dash  = false
-		if _dashing:
-			_dashing_time += delta
-			if _facing_right:
-				linear_vel.x = DASH_SPEED
-			else:
-				linear_vel.x = -DASH_SPEED
-			if _dashing_time >= DASH_TIME:
-				_dashing = false
-				_dashing_time = 0
-				
-				yield(get_tree().create_timer(4),"timeout")
-				_can_dash = true
-		
-		if Input.is_action_just_pressed("attack"):
-			playbackg.travel("atackfull")
-			_fire()
 				
 			
-		#animations
-		if on_floor:
-			if abs(linear_vel.x)> 10 and not _dashing:
-				playbackg.travel("run")
-			elif Input.is_action_pressed("dash"):
-				playbackg.travel("dash")
-			else:
-				playbackg.travel("idle")
-		
-		else:
-			if linear_vel.y >0:
-				playbackg.travel("fall")
-			else:
-				playbackg.travel("jump")
-		
-		if not _facing_right and Input.is_action_pressed("right") and not Input.is_action_pressed("left"):
-			scale.x = -1
-			_facing_right = true
-
-		if  _facing_right and Input.is_action_pressed("left") and not Input.is_action_pressed("right"):
-			scale.x = -1
-			_facing_right = false	
+			linear_vel = move_and_slide(linear_vel,Vector2.UP,false,4,0.785398,false)
+			var on_floor = is_on_floor()
 			
-	#TELEPORT
+			linear_vel.y += GRAVITY * delta
+			
+			var target_vel = Input.get_action_strength("right") - Input.get_action_strength("left")
+			linear_vel.x = move_toward(linear_vel.x,target_vel * MAX_SPEED,ACCELERATION) 
+			
+			if on_floor or nextToWall():
+				_airborne_time = 0
+			else:
+				_airborne_time += delta
+				
+			if (on_floor or _airborne_time <= _MAX_AIRBORNE_TIME or nextToWall()) and Input.is_action_just_pressed("jump"):
+				if nextToRightWall():
+					print("ntrw")
+					linear_vel.x += 100
+					linear_vel.y -= JUMP_SPEED
+				if nextToLeftWall():
+					print("ntlw")
+					linear_vel.x -= 100
+					linear_vel.y -= JUMP_SPEED
+				else:		
+					linear_vel.y = -JUMP_SPEED
+					_airborne_time = _MAX_AIRBORNE_TIME
 
-	if Entrada.is_colliding():
-		player_en_portal = true
-		portal_seleccionado = Entrada.get_collider()
-	else:
-		player_en_portal = false
-		portal_seleccionado = Entrada.get_collider()
+			if (on_floor or _airborne_time <= _MAX_AIRBORNE_TIME and _can_dash) and Input.is_action_just_pressed("dash"):
+				_dashing = true
+				_can_dash  = false
+			if _dashing:
+				_dashing_time += delta
+				if _facing_right:
+					linear_vel.x = DASH_SPEED
+				else:
+					linear_vel.x = -DASH_SPEED
+				if _dashing_time >= DASH_TIME:
+					_dashing = false
+					_dashing_time = 0
+					
+					yield(get_tree().create_timer(4),"timeout")
+					_can_dash = true
+					
+				
+				
+			#animations
+			if on_floor:
+				if abs(linear_vel.x)> 10 and not _dashing:
+					playback.travel("run")
+				elif Input.is_action_pressed("dash"):
+					playback.travel("dash")
+				elif Input.is_action_just_pressed("attack"):
+					playback.travel("attackfull")
+				else:
+					playback.travel("idle")
+			
+			else: 
+				if linear_vel.y >0:
+					playback.travel("fall")
+					if nextToWall():
+						playback.travel("wallSlide")
+				else:
+					playback.travel("jump")
+			
+			if not _facing_right and Input.is_action_pressed("right") and not Input.is_action_pressed("left"):
+				scale.x = -1
+				_facing_right = true
+
+			if  _facing_right and Input.is_action_pressed("left") and not Input.is_action_pressed("right"):
+				scale.x = -1
+				_facing_right = false	
 		
-	if Input.is_action_just_pressed("Entrar") and player_en_portal:
-		portal_seleccionado.activar(self)
-		#get_tree().call_group("Player", "teleport_to", get_node(teleport_target).position)
+		else:  #para modo fantasma
+			$Ghost.visible=true
+			$Sprite.visible=false
+			
+			linear_vel = move_and_slide(linear_vel,Vector2.UP)
+			var on_floor = is_on_floor()
+			
+			linear_vel.y += GRAVITY * delta
+			
+			var target_vel = Input.get_action_strength("right") - Input.get_action_strength("left")
+			linear_vel.x = move_toward(linear_vel.x,target_vel * MAX_SPEED,ACCELERATION) 
+			
+			if on_floor:
+				_airborne_time = 0
+				jump_count=0
+			else:
+				_airborne_time += delta
+				
+			if Input.is_action_just_pressed("jump") and jump_count!=2:
+				linear_vel.y = -JUMP_SPEED+GRAVITY*delta
+				_airborne_time = _MAX_AIRBORNE_TIME
+				jump_count+=1
+			else:
+				_airborne_time=0
+				
+				
+			if (on_floor or _airborne_time <= _MAX_AIRBORNE_TIME and _can_dash) and Input.is_action_just_pressed("dash"):
+				_dashing = true
+				_can_dash  = false
+			if _dashing:
+				_dashing_time += delta
+				if _facing_right:
+					linear_vel.x = DASH_SPEED
+				else:
+					linear_vel.x = -DASH_SPEED
+				if _dashing_time >= DASH_TIME:
+					_dashing = false
+					_dashing_time = 0
+					
+					yield(get_tree().create_timer(4),"timeout")
+					_can_dash = true
+			
+			if Input.is_action_just_pressed("attack"):
+				playbackg.travel("atackfull")
+				_fire()
+					
+				
+			#animations
+			if on_floor:
+				if abs(linear_vel.x)> 10 and not _dashing:
+					playbackg.travel("run")
+				elif Input.is_action_pressed("dash"):
+					playbackg.travel("dash")
+				else:
+					playbackg.travel("idle")
+			
+			else:
+				if linear_vel.y >0:
+					playbackg.travel("fall")
+				else:
+					playbackg.travel("jump")
+			
+			if not _facing_right and Input.is_action_pressed("right") and not Input.is_action_pressed("left"):
+				scale.x = -1
+				_facing_right = true
+
+			if  _facing_right and Input.is_action_pressed("left") and not Input.is_action_pressed("right"):
+				scale.x = -1
+				_facing_right = false	
+				
+		#TELEPORT
+
+		if Entrada.is_colliding():
+			player_en_portal = true
+			portal_seleccionado = Entrada.get_collider()
+		else:
+			player_en_portal = false
+			portal_seleccionado = Entrada.get_collider()
+			
+		if Input.is_action_just_pressed("Entrar") and player_en_portal:
+			portal_seleccionado.activar(self)
+			#get_tree().call_group("Player", "teleport_to", get_node(teleport_target).position)
 
 
 #func teleport_to(target_pos):
@@ -261,13 +272,7 @@ func nextToLeftWall():
 func quitar_vida_player(value):
 	PropPlayer.Vida -= value
 
-# dejar al final
-func _unhandled_key_input(event: InputEventKey) -> void:
-	if event.pressed and event.scancode == KEY_0:
-		PropPlayer.Vida -= 10
-		playback.travel('damage')
-	if event.pressed and event.scancode == KEY_R:
-		LevelManager.reload_scene()
+
 		
 func _fire():
 	if _can_shoot:
@@ -281,3 +286,19 @@ func _fire():
 func on_ataquemelee_body_entered(body: Node):
 	if body.is_in_group("enemigo") and body.has_method("quitar_vida"):
 		body.quitar_vida(10)
+
+func muerte_player():
+	PropPlayer.Vida = PropPlayer.VIDAMAX
+	LevelManager.reload_scene()
+	is_alive = true
+	movil = true
+	
+	
+# dejar al final
+func _unhandled_key_input(event: InputEventKey) -> void:
+	if event.pressed and event.scancode == KEY_0:
+		PropPlayer.Vida -= 10
+		playback.travel('damage')
+	if event.pressed and event.scancode == KEY_R:
+		PropPlayer.Vida = PropPlayer.VIDAMAX
+		LevelManager.reload_scene()

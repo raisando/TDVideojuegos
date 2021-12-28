@@ -11,9 +11,9 @@ var Health_bar
 func set_vida(nueva_vida):
 	Vida = nueva_vida
 	emit_signal("health_change", Vida)
-	if Vida <= 0:
-		Vida = VIDAMAX
-		emit_signal("killed")
+	#if Vida <= 0:
+		#Vida = VIDAMAX
+		#emit_signal("killed")
 		#LevelManager.reload_scene()
 	
 
