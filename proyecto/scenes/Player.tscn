@@ -1,4 +1,4 @@
-[gd_scene load_steps=88 format=2]
+[gd_scene load_steps=89 format=2]
 
 [ext_resource path="res://scripts/Player.gd" type="Script" id=1]
 [ext_resource path="res://sprites/Warrior/SpriteSheet/Warrior_Sheet-Effect.png" type="Texture" id=2]
@@ -7,6 +7,21 @@
 [ext_resource path="res://scenes/pausemenu.tscn" type="PackedScene" id=5]
 [ext_resource path="res://scenes/bullet.tscn" type="PackedScene" id=6]
 [ext_resource path="res://sprites/NightBorne/NightBorne.png" type="Texture" id=7]
+
+[sub_resource type="Animation" id=114]
+resource_name = "Muerte"
+tracks/0/type = "value"
+tracks/0/path = NodePath("AnimationPlayer/Warrior_Sheet-Effect:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 2, 4 ), Vector2( 3, 4 ) ]
+}
 
 [sub_resource type="Animation" id=80]
 length = 0.001
@@ -129,6 +144,18 @@ tracks/9/keys = {
 "transitions": PoolRealArray( 1 ),
 "update": 0,
 "values": [ false ]
+}
+tracks/10/type = "value"
+tracks/10/path = NodePath("AnimationPlayer/Warrior_Sheet-Effect:frame_coords")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, 10 ) ]
 }
 
 [sub_resource type="Animation" id=1]
@@ -1039,6 +1066,7 @@ vframes = 17
 frame = 5
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/Muerte = SubResource( 114 )
 anims/RESET = SubResource( 80 )
 anims/attackfull = SubResource( 1 )
 anims/damage = SubResource( 89 )

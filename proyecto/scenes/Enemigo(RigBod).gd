@@ -42,13 +42,19 @@ func _ready():
 	$ataquemelee/CollisionShape2D2.disabled = true
 	
 	$ataquemelee.connect("body_entered", self, "on_ataquemelee_player_body_entered")
-	
+	$Timer.connect("timeout", self, "muerte")
 func _physics_process(delta):
 	
 # Called when the node enters the scene tree for the first time.
 
 	if vida_enemigo <= 0:
-		queue_free()
+		$AnimationPlayer.play("Muerte")
+		$Timer.start()
+		
+		muerte()
+		#esperar timepo de animacion de 1.3 seg
+		
+		#queue_free()
 	var dir_seguir = Vector2(Player.global_position.x - global_position.x,0)#
 	
 		
@@ -109,6 +115,10 @@ func _on_body_exited(body: Node):
 func quitar_vida(value):
 	vida_enemigo -= value
 	print(vida_enemigo)
+	
+func muerte():
+	
+	queue_free()
 
 func on_ataquemelee_player_body_entered(body: Node):
 	if body.is_in_group("Player") and body.has_method("quitar_vida_player"):
