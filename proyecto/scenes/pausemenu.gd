@@ -26,7 +26,7 @@ func on_continue_pressed():
 
 	
 func on_lobby_pressed():
-	get_tree().change_scene("res://scenes/Lobby.tscn")
+	LevelManager.change_scene(2) #lobby
 	get_tree().paused = false
 
 
