@@ -1,10 +1,9 @@
-[gd_scene load_steps=91 format=2]
+[gd_scene load_steps=90 format=2]
 
 [ext_resource path="res://scripts/Player.gd" type="Script" id=1]
 [ext_resource path="res://sprites/Warrior/SpriteSheet/Warrior_Sheet-Effect.png" type="Texture" id=2]
 [ext_resource path="res://icon.png" type="Texture" id=3]
 [ext_resource path="res://scenes/pausemenu.tscn" type="PackedScene" id=5]
-[ext_resource path="res://scenes/bullet.tscn" type="PackedScene" id=6]
 [ext_resource path="res://sprites/NightBorne/NightBorne.png" type="Texture" id=7]
 
 [sub_resource type="Animation" id=114]
@@ -1093,14 +1092,10 @@ collide_with_bodies = false
 [node name="CanvasLayer" parent="." instance=ExtResource( 5 )]
 
 [node name="bulletspawn" type="Position2D" parent="."]
-position = Vector2( 32, -1 )
-
-[node name="bullet" parent="." instance=ExtResource( 6 )]
-visible = false
-position = Vector2( 58, -14 )
-collision_layer = 0
+position = Vector2( 39, 0 )
 
 [node name="ataquemelee" type="Area2D" parent="."]
+visible = false
 collision_layer = 8
 collision_mask = 8
 
@@ -1121,3 +1116,4 @@ scale = Vector2( 2, 2 )
 texture = ExtResource( 7 )
 hframes = 23
 vframes = 5
+frame = 23
