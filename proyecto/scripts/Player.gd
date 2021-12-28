@@ -43,6 +43,7 @@ onready var Entrada = $Entrada
 onready var ataque_melee = $ataquemelee
 
 var _can_shoot=true
+onready var death_menu = $Panel
 
 func _ready() -> void:
 	#var _er = PropPlayer.connect("killed", self, "on_killed")
@@ -296,7 +297,10 @@ func on_ataquemelee_body_entered(body: Node):
 
 func muerte_player():
 	PropPlayer.Vida = PropPlayer.VIDAMAX
-	LevelManager.reload_scene()
+	#LevelManager.reload_scene()
+	$deathmenu/Panel.show()
+	get_tree().paused = true
+	PropPlayer.Vida = PropPlayer.VIDAMAX
 	is_alive = true
 	movil = true
 	
