@@ -37,4 +37,8 @@ position = Vector2( 1065.22, 422.188 )
 [node name="caster" parent="Enemigos" index="1" instance=ExtResource( 4 )]
 position = Vector2( 429, 488 )
 
+[node name="caster2" parent="Enemigos" index="2" instance=ExtResource( 4 )]
+position = Vector2( 895, 444 )
+_facing_right = false
+
 [editable path="Portales/Portal2"]
