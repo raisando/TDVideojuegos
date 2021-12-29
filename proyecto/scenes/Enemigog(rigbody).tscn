@@ -274,12 +274,10 @@ radius = 22.1794
 height = 48.1255
 
 [node name="Enemigog" type="KinematicBody2D" groups=["enemigo"]]
+modulate = Color( 0.345098, 0.352941, 0.929412, 1 )
 collision_layer = 8
 collision_mask = 11
 script = ExtResource( 1 )
-__meta__ = {
-"_edit_lock_": true
-}
 
 [node name="Sprite" type="Sprite" parent="."]
 scale = Vector2( 2, 2 )

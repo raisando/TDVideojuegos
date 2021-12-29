@@ -45,7 +45,7 @@ position = Vector2( 429, 488 )
 [node name="caster2" parent="Enemigos" index="2" instance=ExtResource( 5 )]
 position = Vector2( 703, 633 )
 
-[node name="Enemigo2" parent="Enemigos" index="3" instance=ExtResource( 6 )]
-position = Vector2( 1055, 407 )
+[node name="Enemigog" parent="Enemigos" index="3" instance=ExtResource( 6 )]
+position = Vector2( 884, 362 )
 
 [editable path="Portales/Portal2"]
