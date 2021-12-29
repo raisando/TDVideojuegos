@@ -739,6 +739,7 @@ tracks/0/keys = {
 [sub_resource type="Animation" id=100]
 resource_name = "death"
 length = 2.4
+loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath("Ghost:frame")
 tracks/0/interp = 1
@@ -758,7 +759,7 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 2.4 ),
+"times": PoolRealArray( 2.2 ),
 "transitions": PoolRealArray( 1 ),
 "values": [ {
 "args": [  ],
