@@ -1,6 +1,6 @@
 extends KinematicBody2D
 
-var vida_enemigo = 60
+export var vida_enemigo = 60
 var bullet = preload("res://scenes/enemybullet.tscn")
 var is_alive=true
 onready var Player

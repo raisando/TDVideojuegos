@@ -1,10 +1,11 @@
 extends KinematicBody2D
 
-var vida_enemigo = 60
+
 var bullet = preload("res://scenes/enemybullet.tscn")
 var is_alive=true
 onready var Player
 export var _facing_right = true
+export var vida_enemigo = 60
 
 func _ready():
 	$Timer.connect("timeout", self, "_fire")

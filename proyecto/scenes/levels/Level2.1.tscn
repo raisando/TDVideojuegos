@@ -52,33 +52,33 @@ tile_data = PoolIntArray( 786465, 0, 0, 852001, 0, 0, 852020, 0, 0, 852031, 0, 0
 
 [node name="Portal" parent="Portales" index="0" instance=ExtResource( 2 )]
 position = Vector2( 2366.8, 460.397 )
-escena_destino = 5
+escena_destino = 7
 
 [node name="Player" parent="." index="4"]
 position = Vector2( 173.192, 494.727 )
 
-[node name="caster" parent="Player" index="21" instance=ExtResource( 7 )]
-position = Vector2( 184.766, 9.45162 )
+[node name="caster" parent="Enemigos" index="0" instance=ExtResource( 7 )]
+position = Vector2( 357.958, 504.179 )
 _facing_right = false
 
-[node name="caster2" parent="Player" index="22" instance=ExtResource( 7 )]
-position = Vector2( 459.74, 206.565 )
+[node name="caster2" parent="Enemigos" index="1" instance=ExtResource( 7 )]
+position = Vector2( 632.932, 701.292 )
 
-[node name="caster3" parent="Player" index="23" instance=ExtResource( 7 )]
-position = Vector2( 1435.3, 197.188 )
+[node name="caster3" parent="Enemigos" index="2" instance=ExtResource( 7 )]
+position = Vector2( 1608.49, 691.915 )
 _facing_right = false
 
-[node name="Enemigo" parent="Enemigos" index="0" instance=ExtResource( 1 )]
+[node name="Enemigo" parent="Enemigos" index="3" instance=ExtResource( 1 )]
 position = Vector2( 807.967, 700.36 )
 
-[node name="Enemigo2" parent="Enemigos" index="1" instance=ExtResource( 1 )]
+[node name="Enemigo2" parent="Enemigos" index="4" instance=ExtResource( 1 )]
 position = Vector2( 1796.23, 498.763 )
 
-[node name="Enemigo3" parent="Enemigos" index="2" instance=ExtResource( 1 )]
+[node name="Enemigo3" parent="Enemigos" index="5" instance=ExtResource( 1 )]
 position = Vector2( 2160.8, 466.888 )
 
-[node name="Enemigo4" parent="Enemigos" index="3" instance=ExtResource( 1 )]
+[node name="Enemigo4" parent="Enemigos" index="6" instance=ExtResource( 1 )]
 position = Vector2( 1119.59, 697.904 )
 
-[node name="Enemigo5" parent="Enemigos" index="4" instance=ExtResource( 1 )]
+[node name="Enemigo5" parent="Enemigos" index="7" instance=ExtResource( 1 )]
 position = Vector2( 1432.19, 700.79 )

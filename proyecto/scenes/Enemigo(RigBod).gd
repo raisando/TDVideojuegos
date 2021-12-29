@@ -13,7 +13,7 @@ export var start_direction = Vector2(1,0)
 #var seguiri = false
 var seguir = false
 var _facing_right = true
-var vida_enemigo = 60
+export var vida_enemigo = 60
 var attacking = false
 
 var is_alive = true
