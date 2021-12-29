@@ -8,6 +8,6 @@ func _physics_process(delta):
 	position+= transform.x * SPEED * delta
 
 func _on_body_entered(body: Node):
-	if body.is_in_group("enemigo") and body.has_method("quitar_vida"):
-		body.quitar_vida(20)
+	if body.is_in_group("enemigo") and body.has_method("quitar_vida_ghost"):
+		body.quitar_vida_ghost(20)
 	queue_free()
