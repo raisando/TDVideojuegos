@@ -218,8 +218,9 @@ func _physics_process(delta):
 					_can_dash = true
 			
 			if Input.is_action_just_pressed("attack"):
-				playbackg.travel("atackfull")
-				_fire()
+				$AnimationTreeg.active=false
+				$AnimationPlayerg.call_deferred("play","atackfull")
+				#_fire()
 					
 				
 			#animations
@@ -244,6 +245,7 @@ func _physics_process(delta):
 			if  _facing_right and Input.is_action_pressed("left") and not Input.is_action_pressed("right"):
 				scale.x = -1
 				_facing_right = false	
+			
 				
 		#TELEPORT
 
@@ -282,6 +284,7 @@ func quitar_vida_player(value):
 		playback.call_deferred("travel","damage")
 	else:
 		$AnimationPlayerg.call_deferred("play","damage")
+		$AnimationTreeg.active=true
 
 
 		
@@ -294,7 +297,7 @@ func _fire():
 		if not _facing_right:
 			Bullet.rotation= PI
 		bullettimer=0
-		
+		$AnimationTreeg.active=true
 func on_ataquemelee_body_entered(body: Node):
 	if body.is_in_group("enemigo") and body.has_method("quitar_vida"):
 		body.quitar_vida(10)

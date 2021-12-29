@@ -676,7 +676,6 @@ tracks/2/keys = {
 [sub_resource type="Animation" id=39]
 resource_name = "atackfull"
 length = 0.9
-loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite2:frame")
 tracks/0/interp = 1
@@ -688,6 +687,20 @@ tracks/0/keys = {
 "transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
 "update": 1,
 "values": [ 30, 31, 32, 33, 34, 35, 36, 37, 38 ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.6 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "_fire"
+} ]
 }
 
 [sub_resource type="Animation" id=99]
@@ -996,7 +1009,7 @@ states/run2/node = SubResource( 134 )
 states/run2/position = Vector2( 573.5, 106.773 )
 transitions = [ "idle2", "run2", SubResource( 135 ), "run2", "idle2", SubResource( 136 ), "idle2", "jump", SubResource( 137 ), "run2", "jump", SubResource( 138 ), "jump", "jump_to_fall", SubResource( 139 ), "jump_to_fall", "fall", SubResource( 140 ), "fall", "idle2", SubResource( 141 ), "fall", "run2", SubResource( 142 ), "idle2", "dash", SubResource( 144 ), "run2", "dash", SubResource( 145 ), "dash", "idle2", SubResource( 146 ), "dash", "run2", SubResource( 147 ), "dash", "fall", SubResource( 148 ), "run2", "atackfull", SubResource( 150 ), "idle2", "atackfull", SubResource( 151 ), "atackfull", "run2", SubResource( 152 ), "atackfull", "idle2", SubResource( 153 ), "dash", "atackfull", SubResource( 154 ), "atackfull", "dash", SubResource( 155 ) ]
 start_node = "idle2"
-graph_offset = Vector2( -121.5, -216.853 )
+graph_offset = Vector2( -121.5, -376 )
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=79]
 
