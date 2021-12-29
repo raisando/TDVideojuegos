@@ -20,6 +20,7 @@ func _fire():
 	#print("a")
 	var Bullet=bullet.instance()
 	get_tree().get_root().add_child(Bullet)
+	$enemyspell.play()
 	if not _facing_right:
 			Bullet.global_position=$bulletspawn.global_position
 			Bullet.rotation= PI

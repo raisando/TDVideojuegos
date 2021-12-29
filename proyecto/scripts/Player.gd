@@ -155,6 +155,7 @@ func _physics_process(delta):
 					playback.travel("dash")
 				elif Input.is_action_just_pressed("attack"):
 					playback.travel("attackfull")
+					$swing.play()
 				else:
 					playback.travel("idle")
 			
@@ -289,6 +290,7 @@ func _fire():
 		var Bullet=bullet.instance()
 		get_parent().add_child(Bullet)
 		Bullet.global_position=$bulletspawn.global_position
+		$castspell.play()
 		if not _facing_right:
 			Bullet.rotation= PI
 		bullettimer=0

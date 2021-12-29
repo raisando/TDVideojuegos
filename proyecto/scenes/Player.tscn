@@ -1,4 +1,4 @@
-[gd_scene load_steps=106 format=2]
+[gd_scene load_steps=108 format=2]
 
 [ext_resource path="res://scripts/Player.gd" type="Script" id=1]
 [ext_resource path="res://sprites/Warrior/SpriteSheet/Warrior_Sheet-Effect.png" type="Texture" id=2]
@@ -7,6 +7,8 @@
 [ext_resource path="res://scenes/pausemenu.tscn" type="PackedScene" id=5]
 [ext_resource path="res://scenes/deathmenu.tscn" type="PackedScene" id=6]
 [ext_resource path="res://sprites/NightBorne/NightBorne.png" type="Texture" id=7]
+[ext_resource path="res://sounds/magic1.wav" type="AudioStream" id=8]
+[ext_resource path="res://sounds/swing2.wav" type="AudioStream" id=9]
 
 [sub_resource type="Animation" id=114]
 resource_name = "Muerte"
@@ -1130,3 +1132,9 @@ hframes = 10
 vframes = 12
 
 [node name="deathmenu" parent="." instance=ExtResource( 6 )]
+
+[node name="castspell" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 8 )
+
+[node name="swing" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 9 )

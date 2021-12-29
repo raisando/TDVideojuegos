@@ -94,6 +94,7 @@ func _physics_process(delta):
 				$ataquemelee.scale.x = 1
 			else:
 				$ataquemelee.scale.x = -1
+			$skeletonatack.play()
 			$AnimationPlayer.play("Ataque")
 			yield($AnimationPlayer,"animation_finished")
 			attacking = false
