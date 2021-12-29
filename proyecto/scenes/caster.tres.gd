@@ -8,12 +8,15 @@ export var _facing_right = true
 
 func _ready():
 	$Timer.connect("timeout", self, "_fire")
+	$AnimationPlayer.call_deferred("play","attack")
 	
 func _physics_process(delta):
 	if is_alive:		
 		if vida_enemigo <= 0:	
 			set_deferred("is_alive",false)
-			queue_free()
+			$Sprite.visible=false
+			$Sprite2.visible=true
+			$AnimationPlayer.call_deferred("play","death")
 
 	
 func _fire():
