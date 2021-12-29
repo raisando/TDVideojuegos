@@ -24,7 +24,7 @@ onready var AreaVision = get_node("Area2D")
 #onready var AreaVisionDer = get_node("Area2DIzq")
 onready var recon_pared = $RayCast2D
 onready var Player
-
+signal enemigomuerto
 
 
 # Called when the node enters the scene tree for the first time.
@@ -121,6 +121,7 @@ func quitar_vida(value):
 	print(vida_enemigo)
 	
 func muerte():
+	emit_signal("enemigomuerto")
 	queue_free()
 
 func on_ataquemelee_player_body_entered(body: Node):

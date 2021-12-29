@@ -5,6 +5,7 @@ var bullet = preload("res://scenes/enemybullet.tscn")
 var is_alive=true
 onready var Player
 export var _facing_right = true
+signal enemigomuerto
 
 func _ready():
 	$Timer.connect("timeout", self, "_fire")
@@ -36,6 +37,7 @@ func quitar_vida_ghost(value):
 	print(vida_enemigo)
 
 func muerte():
+	emit_signal("enemigomuerto")
 	queue_free()
 
 

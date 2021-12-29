@@ -21,7 +21,7 @@ func _input(event: InputEvent) -> void:
 		get_tree().paused = true
 
 func on_continue_pressed():
-		!pause_menu.hide()
+		pause_menu.hide()
 		get_tree().paused = !get_tree().paused
 
 	
