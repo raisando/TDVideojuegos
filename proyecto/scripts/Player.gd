@@ -75,7 +75,9 @@ func _physics_process(delta):
 				$AnimationPlayer.call_deferred("play","Muerte")
 			else: 
 				$AnimationTreeg.active=false
-				$AnimationPlayerg.call_deferred("play","death")
+				$Sprite2.visible=false
+				$Sprite.visible=true
+				$AnimationPlayer.call_deferred("play","Muerte")
 			
 		if movil == false:
 			if Input.is_action_just_pressed("dash"):
@@ -296,7 +298,7 @@ func on_ataquemelee_body_entered(body: Node):
 		body.quitar_vida(10)
 
 func muerte_player():
-	PropPlayer.Vida = PropPlayer.VIDAMAX
+	#PropPlayer.Vida = PropPlayer.VIDAMAX
 	#LevelManager.reload_scene()
 	$deathmenu/Panel.show()
 	get_tree().paused = true

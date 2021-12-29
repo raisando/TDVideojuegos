@@ -1,10 +1,11 @@
-[gd_scene load_steps=105 format=2]
+[gd_scene load_steps=106 format=2]
 
 [ext_resource path="res://scripts/Player.gd" type="Script" id=1]
 [ext_resource path="res://sprites/Warrior/SpriteSheet/Warrior_Sheet-Effect.png" type="Texture" id=2]
 [ext_resource path="res://icon.png" type="Texture" id=3]
 [ext_resource path="res://sprites/Fullmain.png" type="Texture" id=4]
 [ext_resource path="res://scenes/pausemenu.tscn" type="PackedScene" id=5]
+[ext_resource path="res://scenes/deathmenu.tscn" type="PackedScene" id=6]
 [ext_resource path="res://sprites/NightBorne/NightBorne.png" type="Texture" id=7]
 
 [sub_resource type="Animation" id=114]
@@ -722,7 +723,6 @@ tracks/0/keys = {
 [sub_resource type="Animation" id=100]
 resource_name = "death"
 length = 2.4
-loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath("Ghost:frame")
 tracks/0/interp = 1
@@ -742,7 +742,7 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 2.2 ),
+"times": PoolRealArray( 2.4 ),
 "transitions": PoolRealArray( 1 ),
 "values": [ {
 "args": [  ],
@@ -1128,3 +1128,5 @@ scale = Vector2( 2, 2 )
 texture = ExtResource( 4 )
 hframes = 10
 vframes = 12
+
+[node name="deathmenu" parent="." instance=ExtResource( 6 )]
