@@ -95,7 +95,7 @@ func _physics_process(delta):
 			_ghost_state=not _ghost_state
 			
 		if _ghost_state==false:  #para modo humano
-			$Ghost.visible=false
+			$Sprite2.visible=false
 			$Sprite.visible=true
 			jump_count=2
 			
@@ -173,7 +173,7 @@ func _physics_process(delta):
 				_facing_right = false	
 		
 		else:  #para modo fantasma
-			$Ghost.visible=true
+			$Sprite2.visible=true
 			$Sprite.visible=false
 			
 			linear_vel = move_and_slide(linear_vel,Vector2.UP)
@@ -222,11 +222,11 @@ func _physics_process(delta):
 			#animations
 			if on_floor:
 				if abs(linear_vel.x)> 10 and not _dashing:
-					playbackg.travel("run")
+					playbackg.travel("run2")
 				elif Input.is_action_pressed("dash"):
 					playbackg.travel("dash")
 				else:
-					playbackg.travel("idle")
+					playbackg.travel("idle2")
 			
 			else:
 				if linear_vel.y >0:
